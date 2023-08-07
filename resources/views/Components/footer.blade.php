@@ -13,4 +13,4 @@
         box-sizing: border-box;
     }
 </style>
-<div id="footer">© Copyright 2023 Eslam Elbanna </div>
+{{-- <div id="footer">© Copyright 2023 Eslam Elbanna </div> --}}

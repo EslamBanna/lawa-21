@@ -1,5 +1,6 @@
 <style>
-     h1 {
+    h1 {
+        margin-top: 200px;
         font-family: Verdana, Geneva, Tahoma, sans-serif;
         font-size: 60px
     }
@@ -11,6 +12,7 @@
         background-color: rgb(131, 199, 131);
         margin-bottom: 20px;
         transition: all 3 ease-in-out;
+        font-weight: bold
     }
 
     .btn-success:hover {
@@ -18,7 +20,8 @@
         /* background-color: rgb(64, 224, 190); */
         border-radius: 20%;
     }
-    .leader{
+
+    .leader {
         font-size: 30px;
         font-weight: bold;
         margin: 10px;
@@ -27,12 +30,45 @@
         justify-content: center;
         align-items: center;
     }
-    </style>
+
+    #left-akm {
+        position: absolute;
+        left: 15%;
+        top: 40%;
+    }
+
+    #right-akm {
+        position: absolute;
+        right: 15%;
+        top: 40%;
+        transform: rotateY(180deg);
+    }
+    #nesr{
+        /* color: yellow; */
+        font-size: 50px;
+    }
+</style>
 @extends('layouts.general-layout')
 @section('content')
-    <h1>قيادة اللواء 21 إنذار</h1>
-    <a href="{{ url('/test') }}"> <button class="btn btn-success">الدخول</button> </a>
+    <div id="left-akm">
+        <img src="{{ asset('akm.png') }}" alt="akm" width="200" height="200" />
+    </div>
+    <div class="content-center">
+        <h1>قيادة اللواء 21 إنذار</h1>
+        <a href="{{ url('/functions') }}"> <button class="btn btn-success">الدخول</button> </a>
+    </div>
+    <div id="right-akm">
+        <img src="{{ asset('akm.png') }}" alt="akm" width="200" height="200" />
+    </div>
     <br />
-    <span class="leader"> قائد اللواء عقيد أح/ محمد عادل عبداللطيف يوسف</span>
-    <span class="leader"> رئيس أركان اللواء عقيد أح/ محمد نبيل على الحنفى </span>
+    <div id="leaders">
+        <span class="leader"> قائد اللواء عقيد أح/ محمد عادل عبداللطيف يوسف</span>
+        <span class="leader"> رئيس أركان اللواء عقيد أح/ محمد نبيل على الحنفى </span>
+    </div>
+    <div id="nesr">
+        <img src="{{ asset('common/nesr.png') }}" alt="nesr" width="100" height="100" />
+        <br />
+        &star;
+        &star;
+    </div>
 @stop

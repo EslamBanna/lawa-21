@@ -17,6 +17,9 @@
             align-items: center;
             height: 70vh;
             box-sizing: border-box;
+            /* background-image: url({{ url('common/nesr.png') }}); */
+            /* background-size: cover; */
+            /* background-repeat: no-repeat; */
         }
     </style>
 </head>
