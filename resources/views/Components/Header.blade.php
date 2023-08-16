@@ -22,8 +22,8 @@
 <div id="header">
     <div id="depaga">
         <span> قــوات الدفــــاع الجـــوي </span>
-        <span> قيادة الفرقة العاشرة دجو</span>
-        <span>قــيــادة اللــواء 21 إنــذار </span>
+        <span>  الــفــرقـة الـعـاشـرة دجــو</span>
+        <span > الــــلــــــواء 21 إنـــــذار </span>
     </div>
     <div id="logo">
         <img src="{{ asset('icon.png') }}" alt="logo" width="150px" height="150px">

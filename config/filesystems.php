@@ -43,7 +43,60 @@ return [
             'visibility' => 'public',
             'throw' => false,
         ],
-
+        'officers' => [
+            'driver' => 'local',
+            'root' => base_path() . '/public/images/officers/',
+            'url' => env('APP_URL') . '/public',
+            'visibility' => 'public',
+        ],
+        'officers_militray_images' => [
+            'driver' => 'local',
+            'root' => base_path() . '/public/images/officers_militray_images/',
+            'url' => env('APP_URL') . '/public',
+            'visibility' => 'public',
+        ],
+        'officers_id_images' => [
+            'driver' => 'local',
+            'root' => base_path() . '/public/images/officers_id_images/',
+            'url' => env('APP_URL') . '/public',
+            'visibility' => 'public',
+        ],
+        'semi_officers' => [
+            'driver' => 'local',
+            'root' => base_path() . '/public/images/semi_officers/',
+            'url' => env('APP_URL') . '/public',
+            'visibility' => 'public',
+        ],
+        'semi_officers_militray_images' => [
+            'driver' => 'local',
+            'root' => base_path() . '/public/images/semi_officers_militray_images/',
+            'url' => env('APP_URL') . '/public',
+            'visibility' => 'public',
+        ],
+        'semi_officers_id_images' => [
+            'driver' => 'local',
+            'root' => base_path() . '/public/images/semi_officers_id_images/',
+            'url' => env('APP_URL') . '/public',
+            'visibility' => 'public',
+        ],
+        'soliders' => [
+            'driver' => 'local',
+            'root' => base_path() . '/public/images/soliders/',
+            'url' => env('APP_URL') . '/public',
+            'visibility' => 'public',
+        ],
+        'soliders_militray_images' => [
+            'driver' => 'local',
+            'root' => base_path() . '/public/images/soliders_militray_images/',
+            'url' => env('APP_URL') . '/public',
+            'visibility' => 'public',
+        ],
+        'soliders_id_images' => [
+            'driver' => 'local',
+            'root' => base_path() . '/public/images/soliders_id_images/',
+            'url' => env('APP_URL') . '/public',
+            'visibility' => 'public',
+        ],
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),
