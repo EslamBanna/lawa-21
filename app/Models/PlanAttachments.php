@@ -18,4 +18,10 @@ class PlanAttachments extends Model
     {
         return $this->belongsTo(Plan::class, 'plan_id');
     }
+
+    public function getAttachAttribute($value)
+    {
+        $actual_link = (isset($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/';
+        return ($value == null ? '' : $actual_link . 'images/planAttachments/' . $value);
+    }
 }

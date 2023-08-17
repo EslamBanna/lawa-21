@@ -23,7 +23,7 @@
     <div id="depaga">
         <span> قــوات الدفــــاع الجـــوي </span>
         <span>  الــفــرقـة الـعـاشـرة دجــو</span>
-        <span > الــــلــــــواء 21 إنـــــذار </span>
+        <span >قيادة الـلــــواء ٢١ إنـــذار </span>
     </div>
     <div id="logo">
         <img src="{{ asset('icon.png') }}" alt="logo" width="150px" height="150px">

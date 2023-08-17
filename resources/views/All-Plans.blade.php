@@ -129,14 +129,15 @@
                 <th>بداية </th>
                 <th>نهاية </th>
                 <th>إختصاص</th>
+                <th>المرفقات</th>
                 <th>الملاحظات</th>
                 <th>عمليات</th>
             </thead>
             @foreach ($plans as $index => $plan)
                 <tr>
-                    <td> {{ $index }} </td>
+                    <td> {{++ $index }} </td>
                     <td> {{ $plan->type_of_plan }} </td>
-                    <td> {{ $plan->subject }} </td>
+                    <td> {!! $plan->subject !!} </td>
                     <td> {{ $plan->start_plan }} </td>
                     <td>
                         @if ($plan->end_plan == null)
@@ -151,6 +152,11 @@
                         @endforeach
                     </td>
                     <td>
+                        @foreach ($plan->attachments as $index => $attachment)
+                            <a href="{{ $attachment->attach }}" target="_blank"> مرفق {{++ $index }}</a>
+                        @endforeach    
+                    </td>
+                    <td>
                         @if ($plan->notes == null)
                             -
                         @else
@@ -158,14 +164,6 @@
                         @endif
                     </td>
                     <td>
-                        <a href="{{ url('/show-officer/' . $plan->id) }}">
-                            <button class="show-btn">عرض</button>
-                        </a>
-                        @if ($plan->type_of_plan != 'مخطط مرور القائد')
-                            <a href="{{ url('/update-officer/' . $plan->id) }}">
-                                <button class="update-btn">تعديل</button>
-                            </a>
-                        @endif
                         <a href="{{ url('/delete-officer/' . $plan->id) }}">
                             <button class="delete-btn">حذف</button>
                         </a>

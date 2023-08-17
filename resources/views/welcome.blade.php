@@ -54,7 +54,7 @@
         <img src="{{ asset('akm.png') }}" alt="akm" width="200" height="200" />
     </div>
     <div class="content-center">
-        <h1>قيادة اللواء 21 إنذار</h1>
+        <h1>قيادة اللواء ٢١ إنذار</h1>
         <a href="{{ url('/functions') }}"> <button class="btn btn-success">الدخول</button> </a>
     </div>
     <div id="right-akm">

@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('plan_attachments', function (Blueprint $table) {
             $table->id();
+            $table->integer('plan_id');
+            $table->string('attach');
             $table->timestamps();
         });
     }

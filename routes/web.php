@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\OfficerController;
+use App\Http\Controllers\PDFController;
 use App\Http\Controllers\PlanController;
 use App\Http\Controllers\SemiOfficerController;
 use App\Http\Controllers\SoliderController;
@@ -18,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// $eastern_arabic = array('٠','١','٢','٣','٤','٥','٦','٧','٨','٩');
 Route::get('/', function () {
     return view('welcome');
 });
@@ -65,3 +67,9 @@ Route::get('/get-plans',[PlanController::class,'getPlans']);
 Route::post('/filter-plans',[PlanController::class,'filterPlans']);
 Route::get('/add-plan-page',[PlanController::class,'addPlanPage']);
 Route::post('/add-plan',[PlanController::class,'addPlan']);
+
+
+
+
+
+Route::get('create-pdf-file', [PDFController::class, 'index']);

@@ -4,11 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\Kataeb;
 use App\Models\Plan;
+use App\Models\PlanAttachments;
 use App\Models\PlanKateaps;
+use App\Traits\GeneralTrait;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PlanController extends Controller
 {
+    use GeneralTrait;
     public function getPlansFunsctions()
     {
         return view('Plans-Functions');
@@ -139,7 +143,7 @@ class PlanController extends Controller
     public function getPlans()
     {
         $plans = Plan::where('start_plan', '>=', today())
-            ->with(['kataeabs.katepa'])
+            ->with(['kataeabs.katepa', 'attachments'])
             ->orderBy('start_plan')
             ->get();
         return view('All-Plans')->with(['plans' => $plans]);
@@ -151,28 +155,68 @@ class PlanController extends Controller
         if ($request->end != null) {
             $plans = Plan::where('start_plan', '>=', $request->start)
                 ->where('start_plan', '<=', $request->end)
+                ->with(['kataeabs.katepa', 'attachments'])
+                ->orderBy('start_plan')
                 ->get();
         } else {
-            $plans = Plan::where('start_plan', '>=', $request->start)->get();
+            $plans = Plan::where('start_plan', '>=', $request->start)
+                ->with(['kataeabs.katepa', 'attachments'])
+                ->orderBy('start_plan')
+                ->get();
         }
         return view('All-Plans')->with(['plans' => $plans]);
     }
 
-    public function addPlanPage(){
+    public function addPlanPage()
+    {
         $kataebs = Kataeb::get();
-        return view('Add-new-plan')->with(['kataebs' => $kataebs]);
+        // return view('Add-new-plan')->with(['kataebs' => $kataebs]);
+        return view('Add-new-plan-with-tiny')->with(['kataebs' => $kataebs]);
     }
     public function addPlan(Request $request)
     {
-        return $request;
-        $plan = Plan::create([
-            'start_plan' => $request->start_plan,
-            'end_plan'  => $request->end_plan,
-            'type_of_plan'  => $request->type_of_plan,
-            'subject'  => $request->subject,
-            'desction'  => '',
-            'notes'  => $request->notes
-        ]);
-
+        try {
+            DB::beginTransaction();
+            // return $request;
+            $keys = array_keys($request->all());
+            $values = array_values($request->all());
+            $specials = [];
+            foreach ($keys as $index => $key) {
+                if (str_contains($key, 'special')) {
+                    array_push($specials, $values[$index]);
+                }
+            }
+            $plan = Plan::create([
+                'start_plan' => $request->start_plan,
+                'end_plan'  => $request->end_plan,
+                'type_of_plan'  => $request->type_of_plan,
+                'subject'  => $request->subject,
+                'desction'  => '',
+                'notes'  => $request->notes ?? ''
+            ]);
+            foreach ($specials as $special) {
+                PlanKateaps::create([
+                    'plan_id' => $plan->id,
+                    'kateapa_id' => $special,
+                    'day' => '1'
+                ]);
+            }
+            if ($request->hasFile('attachs')) {
+                $files = $request->file('attachs');
+                $plan_attach = '';
+                foreach ($files as $file) {
+                    $plan_attach = $this->saveImage($file, 'planAttachments');
+                    PlanAttachments::create([
+                        'plan_id' => $plan->id,
+                        'attach' => $plan_attach
+                    ]);
+                }
+            }
+            DB::commit();
+            return redirect()->to('/get-plans');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return $e->getMessage();
+        }
     }
 }
