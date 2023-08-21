@@ -15,7 +15,9 @@ class OfficerController extends Controller
     {
         $kataebs  = Kataeb::get();
         $guns = Guns::get();
-        $officers = Officer::with('kateba', 'Gun')->get();
+        $officers = Officer::with('kateba', 'Gun')
+            ->orderBy('kateba_id')
+            ->get();
         return view('officer-database')->with(['kataebs' => $kataebs, 'guns' => $guns, 'officers' => $officers]);
     }
     public function filterOfficers(Request $request)
@@ -42,7 +44,9 @@ class OfficerController extends Controller
     {
         $filteration = '';
         if ($request->officer_name != null) {
-            $filteration = Officer::where('name', 'like', '%' . $request->officer_name . '%')->get();
+            $filteration = Officer::where('name', 'like', '%' . $request->officer_name . '%')
+                ->orderBy('kateba_id')
+                ->get();
         }
         if ($request->militray_id != null) {
             $filteration = Officer::where('militray_id', $request->militray_id)->get();

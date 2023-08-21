@@ -160,7 +160,7 @@
                 </div>
                 <button style="width:100px;" class="search-btn" type="submit"> البحث </button>
             </form>
-            <button style="width:100px; background:red" class="search-btn" onclick="reset(1)"> RESET </button>
+            <button style="width:100px; background:red" class="search-btn" onclick="reset()"> RESET </button>
         </div>
     </div>
 
@@ -270,7 +270,8 @@
     <script type="text/javascript" src="{{ asset('js/jquery.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/bootstrap.bundle.js') }}"></script>
     <script>
-        function reset(type) {
+        window.onload = reset()
+        function reset() {
             document.getElementById('kateaba_name').value = '';
             document.getElementById('gun').value = '';
             document.getElementById('gun_number').value = '';

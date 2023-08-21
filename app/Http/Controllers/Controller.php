@@ -9,6 +9,11 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
 
+
+use App\Exports\UsersExport;
+// use Maatwebsite\Excel\Facades\Excel;
+use Excel;
+
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
