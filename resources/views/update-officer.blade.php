@@ -45,12 +45,12 @@
             <div class="input">
                 <label>الرقم العسكري </label>
                 <input type="text" name="militray_id" id="militray_id" placeholder="أدخل الرقم العسكري"
-                    value="{{ $officer->militray_id }}" />
+                    value="{{ $officer->militray_id }}" required/>
                 <label> رقم الأقدمية </label>
                 <input type="text" name="old_id" id="old_id" value="{{ $officer->old_id }}"
-                    placeholder="أدخل رقم الأقدمية" />
+                    placeholder="أدخل رقم الأقدمية" required/>
                 <label> الرتبة </label>
-                <select name="degree">
+                <select name="degree" required>
                     <option value="{{ $officer->degree }}"> {{ $officer->degree }}</option>
                     <option value="لواء أح"> لواء أح</option>
                     <option value="لواء">لواء</option>
@@ -68,17 +68,17 @@
                 </select>
                 <label> الأسم </label>
                 <input type="text" name="name" id="officer-name" placeholder=" أسم الضابط"
-                    value="{{ $officer->name }}" />
+                    value="{{ $officer->name }}" required/>
                 <br />
                 <label> الوحدة</label>
-                <select name="kateba_id">
+                <select name="kateba_id" required>
                     @if ($officer->kateba->katepa_name == 21)
                         {
                         <option value="1">قيال 21
                         </option>
                         }
                     @else
-                        <option value="{{ $officer->kateba->katepa_name }}">ك {{ $officer->kateba->katepa_name }}</option>
+                        <option value="{{ $officer->kateba->id }}">ك {{ $officer->kateba->katepa_name }}</option>
                     @endif
                     <option value="1"> قيال 21 </option>
                     @foreach ($kataebs as $kataeb)
@@ -90,35 +90,38 @@
                     @endforeach
                 </select>
                 <label> تاريخ الأنضمام</label>
-                <input type="date" name="join_at" id="join_at" value="{{ $officer->join_at }}" />
+                <input type="date" name="join_at" id="join_at" value="{{ $officer->join_at }}" required/>
                 <label> الوظيفة</label>
-                <input type="text" name="job" id="officer-job" value="{{ $officer->job }}" placeholder="الوظيفة" />
+                <input type="text" name="job" id="officer-job" value="{{ $officer->job }}" placeholder="الوظيفة" required/>
                 <label> التخصص</label>
                 <input type="text" name="specialist" id="officer-specialist" placeholder="التخصص"
-                    value="{{ $officer->specialist }}" />
+                    value="{{ $officer->specialist }}" required />
                 <br />
                 <label> الفئة </label>
-                <select name="officer_type" id="officer_type">
+                <select name="officer_type" id="officer_type" required>
+                    <option value="{{ $officer->officer_type }}" selected>{{ $officer->officer_type }}</option>
                     <option value="عامل">عامل</option>
                     <option value="فني">فني</option>
                     <option value="شرف">شرف</option>
                     <option value="احتياط">احتياط</option>
                 </select>
                 <label> السلاح </label>
-                <select name="gun_id" id="gun">
+                <select name="gun_id" id="gun" required>
+                    <option value="{{ $officer->gun_id }}" selected>{{ $officer->gun->gun_name }}</option>
                     @foreach ($guns as $gun)
                         <option value="{{ $gun->id }}"> {{ $gun->gun_name }}</option>
                     @endforeach
                 </select>
 
                 <label> رقم الدفعة </label>
-                <select name="gun_number" id="gun_number">
+                <select name="gun_number" id="gun_number" required>
+                <option value="{{ $officer->gun_number }}" selected>{{ $officer->gun_number }}</option>
                     @for ($i = 0; $i < 300; $i++)
                         <option value="{{ $i }}"> {{ $i }}</option>
                     @endfor
                 </select>
                 <label> تاريخ الميلاد </label>
-                <input type="date" name="birthdate" id="officer-birthdate" value="{{ $officer->birthdate }}" />
+                <input type="date" name="birthdate" id="officer-birthdate" value="{{ $officer->birthdate }}" required/>
                 <br />
                 <label>شارع </label>
                 <input type="text" name="street" id="officer-street" placeholder="شارع"
@@ -140,7 +143,7 @@
                 <input type="text" name="weight" id="officer-weight" placeholder="الوزن"
                     value="{{ $officer->weight }}" />
                     <label> الكلية </label>
-                    <select  name="university" id="officer-university" >
+                    <select  name="university" id="officer-university" required>
                         <option> {{ $officer->university }} </option>
                         <option value="حربية">حربية </option>
                         <option value="فنية عسكرية">فنية عسكرية </option>
@@ -149,7 +152,7 @@
                     </select>
                 <label> تليفون 1</label>
                 <input type="text" name="phone1" id="officer-phone1" placeholder="تليفون 1"
-                    value="{{ $officer->phone1 }}" />
+                    value="{{ $officer->phone1 }}" required/>
                 <br />
                 <label> تليفون 2</label>
                 <input type="text" name="phone2" id="officer-phone2" placeholder="تليفون 2"

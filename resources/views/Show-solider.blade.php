@@ -69,7 +69,7 @@
         </div>
         <div class="input">
             <label>الرقم العسكري </label>
-            <input type="text" name="militray_id" id="militray_id" placeholder="أدخل الرقم العسكري"
+            <input type="text" name="militray_id" id="militray_id" placeholder=" الرقم العسكري"
                 value="{{ $officer->militray_id }}" disabled />
             <label> الدرجة </label>
             <input type="text" name="degree" id="degree" placeholder="degree"
@@ -78,13 +78,9 @@
             <input type="text" name="name" id="officer-name" placeholder=" أسم الجندي" value="{{ $officer->name }}"
                 disabled />
             <label> الوحدة</label>
-            <select name="kateba_id" disabled>
-                @if ($officer->kateba->katepa_name == 21)
-                <option>قيال {{ $officer->kateba->katepa_name }} </option>                    
-                @else
-                <option>ك {{ $officer->kateba->katepa_name }} </option>                    
-                @endif
-            </select>
+            <input type="text" name="kateba_id" id="kateba_id" placeholder="  " value="{{ $officer->kateba->katepa_name }}"
+            disabled />
+
             <br />
             <label> تاريخ الأنضمام</label>
             <input type="date" name="join_at" id="join_at" value="{{ $officer->join_at }}" disabled />
@@ -95,11 +91,9 @@
             <input type="text" name="specialist" id="officer-specialist" placeholder="التخصص"
                 value="{{ $officer->specialist }}" disabled />
             <label> السلاح </label>
-            <select name="gun_id" id="gun" disabled>
-                @foreach ($guns as $gun)
-                    <option value="{{ $gun->id }}"> {{ $gun->gun_name }}</option>
-                @endforeach
-            </select>
+            <input type="text" name="gun_id" id="gun_id" placeholder=" السلاح " value="{{ $officer->gun->gun_name }}"
+            disabled />
+
             <br />
             <label> تاريخ الميلاد </label>
             <input type="date" name="birthdate" id="officer-birthdate" value="{{ $officer->birthdate }}" disabled />
@@ -122,19 +116,18 @@
             <label>الوزن </label>
             <input type="text" name="weight" id="officer-weight" placeholder="الوزن" value="{{ $officer->weight }}"
                 disabled />
-            <label>التمام </label>
-            <input type="text" name="tamam" id="officer-tamam" placeholder="التمام" value="{{ $officer->tamam }}"
-                disabled />
-                <br />
+             
             <label> تليفون 1</label>
             <input type="text" name="phone1" id="officer-phone1" placeholder="تليفون 1" value="{{ $officer->phone1 }}"
                 disabled />
+                <br />
             <label> تليفون 2</label>
             <input type="text" name="phone2" id="officer-phone2" placeholder="تليفون 2" value="{{ $officer->phone2 }}"
                 disabled />
             <label> ملاحظات</label>
             <input type="text" name="notes" id="officer-notes" placeholder="ملاحظات" value="{{ $officer->notes }}"
                 disabled />
+                <br />
                 <button class="download">تنزيل PDF </button>
             <br />
             @if ($officer->image != null)

@@ -33,7 +33,7 @@
 
     td,
     th {
-        padding: 10px
+        padding: 5px
     }
 
     thead {
@@ -104,15 +104,21 @@
     #add-new-officer button:hover {
         cursor: pointer;
     }
-    td{
+
+    td {
         text-align: center
+    }    
+    .kataepa-head {
+        background-color: green;
+        font-weight: bold;
+        color: white
     }
 </style>
 <div id="tempalte">
     <div id="intro" style="text-align: center">
         <h1>قاعدة بيانات ضباط الصف</h1>
         <a href="{{ url('/') }}">
-            
+
             <button> &LeftArrow; العودة الي الصفحة الرئيسية </button>
         </a>
     </div>
@@ -151,7 +157,7 @@
                 </div>
                 <button style="width:100px;" class="search-btn" type="submit"> البحث </button>
             </form>
-            <button style="width:100px; background:red" class="search-btn" onclick="reset(1)"> RESET </button>
+            <button style="width:100px; background:red" class="search-btn" onclick="reset()"> RESET </button>
         </div>
     </div>
 
@@ -175,28 +181,32 @@
         </a>
         <button style="background-color: green">تنزيل PDF </button>
     </div>
+    <?php
+    $kat = ['قيال ٢١', ' كـ ٤١', 'كـ ٤٣', 'كـ ٤٤', 'كـ ٦٨', 'كـ ٦٩', 'كـ ٧٤', 'كـ ٧٩', '', ''];
+    $current_kat = 0;
+    $bool = false;
+    ?>
     <table>
         <thead>
             <tr>
-                <th  rowspan="2">م</th>
-                <th  rowspan="2">درجة</th>
-                <th  rowspan="2">الرقم العسكري</th>
-                <th  rowspan="2">الأسم</th>
-                <th  rowspan="2">الوحدة</th>
-                <th  rowspan="2">تاريخ الضم</th>
-                <th  rowspan="2">الوظيفة</th>
-                <th  rowspan="2">التخصص</th>
-                <th  rowspan="2">السلاح</th>
-                <th  rowspan="2">رقم الدفعة</th>
-                <th  rowspan="2">تاريخ الميلاد</th>
+                <th rowspan="2">م</th>
+                <th rowspan="2">درجة</th>
+                <th rowspan="2">الرقم العسكري</th>
+                <th rowspan="2">الأسم</th>
+                <th rowspan="2">الوحدة</th>
+                <th rowspan="2">تاريخ الضم</th>
+                <th rowspan="2">الوظيفة</th>
+                <th rowspan="2">التخصص</th>
+                <th rowspan="2">السلاح</th>
+                <th rowspan="2">رقم الدفعة</th>
+                <th rowspan="2">تاريخ الميلاد</th>
                 <th rowspan="1" colspan="4"> العنوان</th>
-                <th  rowspan="2">طول</th>
-                <th  rowspan="2">وزن</th>
-                <th  rowspan="2">التمام</th>
-                <th  rowspan="2">تليفون 1</th>
-                <th  rowspan="2">تليفون 2</th>
-                <th  rowspan="2">الملاحظات</th>
-                <th  rowspan="2">عمليات</th>
+                <th rowspan="2">طول</th>
+                <th rowspan="2">وزن</th>
+                <th rowspan="2">تليفون 1</th>
+                <th rowspan="2">تليفون 2</th>
+                <th rowspan="2">الملاحظات</th>
+                <th rowspan="2">عمليات</th>
             </tr>
             <tr>
                 <th colspan="1">شارع</th>
@@ -206,9 +216,30 @@
             </tr>
 
         </thead>
-        @foreach ($officers as $officer)
+        <tr class="kataepa-head">
+            <td colspan="24">
+                {{ $kat[$current_kat] }}
+            </td>
+        </tr>
+        @foreach ($officers as $index => $officer)
+            @while ($officer->kateba_id != $current_kat + 1)
+                <?php
+                $current_kat++;
+                $bool = true;
+                ?>
+            @endwhile
+            @if ($bool)
+                <tr class="kataepa-head">
+                    <td colspan="24">
+                        {{ $kat[$current_kat] }}
+                    </td>
+                </tr>
+                <?php
+                $bool = false;
+                ?>
+            @endif
             <tr>
-                <td>{{ $officer->id }} </td>
+                <td>{{ $index }} </td>
                 <td>{{ $officer->degree }} </td>
                 <td>{{ $officer->militray_id }} </td>
                 <td>{{ $officer->name }} </td>
@@ -233,7 +264,6 @@
                 <td>{{ $officer->goverment }} </td>
                 <td>{{ $officer->hight }} </td>
                 <td>{{ $officer->weight }} </td>
-                <td>{{ $officer->tamam }} </td>
                 <td>{{ $officer->phone1 }} </td>
                 <td>{{ $officer->phone2 }} </td>
                 <td>{{ $officer->notes }} </td>
@@ -252,7 +282,9 @@
         @endforeach
     </table>
     <script>
-        function reset(type) {
+        window.onload = reset()
+
+        function reset() {
             document.getElementById('kateaba_name').value = '';
             document.getElementById('gun').value = '';
             document.getElementById('gun_number').value = '';

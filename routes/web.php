@@ -67,9 +67,15 @@ Route::get('/get-plans',[PlanController::class,'getPlans']);
 Route::post('/filter-plans',[PlanController::class,'filterPlans']);
 Route::get('/add-plan-page',[PlanController::class,'addPlanPage']);
 Route::post('/add-plan',[PlanController::class,'addPlan']);
-
-
+Route::get('/kataep-plans', [PlanController::class, 'kataepPlans']);
+Route::get('/update-plan/{plan_id}', [PlanController::class, 'updatePlan']);
+Route::post('/save-update-plan/{plan_id}', [PlanController::class, 'saveUpdatePlan']);
+Route::get('/delete-plan-one/{plan_id}', [PlanController::class, 'deletePlanOne']);
+Route::get('/delete-plan/{plan_id}', [PlanController::class, 'deletePlan']);
+####################### Export PDF ######################################################
+Route::get('/export-officers', [PDFController::class, 'exportPdf']);
 
 
 
 Route::get('create-pdf-file', [PDFController::class, 'index']);
+Route::get('/test', [Controller::class, 'test']);

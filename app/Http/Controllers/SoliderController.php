@@ -16,7 +16,9 @@ class SoliderController extends Controller
     {
         $kataebs  = Kataeb::get();
         $guns = Guns::get();
-        $officers = Solider::with('kateba', 'Gun')->get();
+        $officers = Solider::with('kateba', 'Gun')
+        ->orderBy('kateba_id')
+        ->get();
         return view('soliders-database')->with(['kataebs' => $kataebs, 'guns' => $guns, 'officers' => $officers]);
     }
     public function filterSolider(Request $request)
@@ -85,10 +87,8 @@ class SoliderController extends Controller
 
     public function showSolider($officer_id)
     {
-        $kataebs  = Kataeb::get();
-        $guns = Guns::get();
         $officer = Solider::with('kateba')->find($officer_id);
-        return view('Show-solider')->with(['officer' => $officer, 'kataebs' => $kataebs, 'guns' => $guns]);
+        return view('Show-solider')->with(['officer' => $officer]);
     }
 
     public function updateSolider($officer_id)

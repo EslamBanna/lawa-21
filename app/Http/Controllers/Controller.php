@@ -22,4 +22,9 @@ class Controller extends BaseController
     {
         return view('Functions');
     }
+
+    public function test(){
+        $officers = Officer::get();
+        return view('officers-pdf')->with(['officers' => $officers]);
+    }
 }

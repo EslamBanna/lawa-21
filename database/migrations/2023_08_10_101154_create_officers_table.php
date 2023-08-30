@@ -15,20 +15,20 @@ return new class extends Migration
     {
         Schema::create('officers', function (Blueprint $table) {
             $table->id();
-            $table->integer('militray_id');
+            $table->string('militray_id');
             $table->string('old_id', 10);
             $table->string('degree', 10);
             $table->string('name');
             $table->integer('kateba_id');
-            $table->date('join_at')->nullable();
+            $table->string('join_at')->nullable();
             $table->string('job');
-            $table->enum('university', ['حربية', 'فنية عسكرية' , 'د جو', 'معهد الفني']);
+            $table->enum('university', ['حربية', 'فنية عسكرية' , 'د جو', 'معهد الفني', 'كلية الضباط الإحتياط']);
             $table->string('specialist');
             $table->enum('officer_type', ['شرف', 'عامل', 'احتياط', 'فني']);
             $table->integer('gun_id');
             // $table->foreignId('')->constrained('guns')->onDelete('cascade');
             $table->string('gun_number', 10);
-            $table->date('birthdate')->nullable();
+            $table->string('birthdate')->nullable();
             $table->string('street')->nullable();
             $table->string('village')->nullable();
             $table->string('country')->nullable();

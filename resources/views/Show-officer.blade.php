@@ -55,27 +55,23 @@
         </div>
         <div class="input">
             <label>الرقم العسكري </label>
-            <input type="text" name="militray_id" id="militray_id" placeholder="أدخل الرقم العسكري"
+            <input type="text" name="militray_id" id="militray_id" placeholder=" الرقم العسكري"
                 value="{{ $officer->militray_id }}" disabled />
             <label> رقم الأقدمية </label>
-            <input type="text" name="old_id" id="old_id" value="{{ $officer->old_id }}" placeholder="أدخل رقم الأقدمية"
+            <input type="text" name="old_id" id="old_id" value="{{ $officer->old_id }}" placeholder=" رقم الأقدمية"
                 disabled />
             <label> الرتبة </label>
-            <select name="degree" disabled>
-                <option value="{{ $officer->degree }}"> {{ $officer->degree }}</option>
-            </select>
+            <input type="text" name="degree" id="degree" value="{{ $officer->degree }}" placeholder=" رقم الأقدمية"
+            disabled />
+
             <label> الأسم </label>
             <input type="text" name="name" id="officer-name" placeholder=" أسم الضابط" value="{{ $officer->name }}"
                 disabled />
             <br />
             <label> الوحدة</label>
-            <select name="kateba_id" disabled>
-                @if ($officer->kateba->katepa_name == 21)
-                <option>قيال {{ $officer->kateba->katepa_name }} </option>                    
-                @else
-                <option>ك {{ $officer->kateba->katepa_name }} </option>                    
-                @endif
-            </select>
+            <input type="text" name="kateba_id" id="kateba_id" value="{{ $officer->kateba->katepa_name }}" placeholder=" الوحدة"
+            disabled />
+
             <label> تاريخ الأنضمام</label>
             <input type="date" name="join_at" id="join_at" value="{{ $officer->join_at }}" disabled />
             <label> الوظيفة</label>
@@ -86,23 +82,17 @@
                 value="{{ $officer->specialist }}" disabled />
             <br />
             <label> الفئة </label>
-            <select name="officer_type" id="officer_type" disabled>
-                <option value="عامل">عامل</option>
-                <option value="فني">فني</option>
-                <option value="شرف">شرف</option>
-                <option value="احتياط">احتياط</option>
-            </select>
+            <input type="text" name="officer_type" id="officer_type" value="{{ $officer->officer_type }}" placeholder=" الفئة"
+            disabled />
+
             <label> السلاح </label>
-            <select name="gun_id" id="gun" disabled>
-                @foreach ($guns as $gun)
-                    <option value="{{ $gun->id }}"> {{ $gun->gun_name }}</option>
-                @endforeach
-            </select>
+            <input type="text" name="gun_id" id="gun_id" value="{{ $officer->gun->gun_name }}" placeholder=" السلاح"
+            disabled />
 
             <label> رقم الدفعة </label>
-            <select name="gun_number" id="gun_number" disabled>
-                <option value="{{ $officer->gun_number }}"> {{ $officer->gun_number }}</option> 
-            </select>
+            <input type="text" name="gun_number" id="gun_number" value="{{ $officer->gun_number }}" placeholder=" رقم الدفعة "
+            disabled />
+
             <label> تاريخ الميلاد </label>
             <input type="date" name="birthdate" id="officer-birthdate" value="{{ $officer->birthdate }}" disabled />
            <br />
@@ -139,6 +129,7 @@
             <label> ملاحظات</label>
             <input type="text" name="notes" id="officer-notes" placeholder="ملاحظات" value="{{ $officer->notes }}"
                 disabled />
+                <br />
                 <button class="download">تنزيل PDF </button>
             <br />
             @if ($officer->image != null)

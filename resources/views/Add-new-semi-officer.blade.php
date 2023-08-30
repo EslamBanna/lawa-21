@@ -45,9 +45,9 @@
             @csrf
             <div class="input">
                 <label>الرقم العسكري </label>
-                <input type="text" name="militray_id" id="militray_id" placeholder="أدخل الرقم العسكري" />
+                <input type="text" name="militray_id" id="militray_id" placeholder="أدخل الرقم العسكري" required/>
                 <label> الدرجة </label>
-                <select name="degree">
+                <select name="degree" required>
                     <option value="مساعد أ">مساعد أ</option>
                     <option value="مساعد">مساعد</option>
                     <option value="رقيب أ">رقيب أ</option>
@@ -56,8 +56,8 @@
                     <option value="طالب">طالب</option>
                 </select>
                 <label> الأسم </label>
-                <input type="text" name="name" id="officer-name" placeholder="أدخل أسم ضابط الصف" />
-                <select name="kateba_id">
+                <input type="text" name="name" id="officer-name" placeholder="أدخل أسم ضابط الصف" required/>
+                <select name="kateba_id" required>
                     <option value="1"> قيال 21</option>
                     @foreach ($kataebs as $kataeb)
                         @if ($kataeb->id != 1)
@@ -69,18 +69,18 @@
                 </select>
                 <br />
                 <label> تاريخ الأنضمام</label>
-                <input type="date" name="join_at" id="join_at" />
-                <input type="text" name="job" id="officer-job" placeholder="الوظيفة" />
-                <input type="text" name="specialist" id="officer-specialist" placeholder="التخصص" />
+                <input type="date" name="join_at" id="join_at" required/>
+                <input type="text" name="job" id="officer-job" placeholder="الوظيفة" required/>
+                <input type="text" name="specialist" id="officer-specialist" placeholder="التخصص" required/>
                 <label> السلاح </label>
-                <select name="gun_id" id="gun">
+                <select name="gun_id" id="gun" required>
                     @foreach ($guns as $gun)
                         <option value="{{ $gun->id }}"> {{ $gun->gun_name }}</option>
                     @endforeach
                 </select>
                 <br />
                 <label> رقم الدفعة </label>
-                <select name="gun_number" id="gun_number">
+                <select name="gun_number" id="gun_number" required>
                     @for ($i = 0; $i < 300; $i++)
                         <option value="{{ $i }}"> {{ $i }}</option>
                     @endfor
@@ -94,8 +94,7 @@
                 <input type="text" name="hight" id="officer-hight" placeholder="الطول" />
                 <input type="text" name="weight" id="officer-weight" placeholder="الوزن" />
                 <br />
-                <input type="text" name="tamam" id="officer-tamam" placeholder="التمام" />
-                <input type="text" name="phone1" id="officer-phone1" placeholder="تليفون 1" />
+                <input type="text" name="phone1" id="officer-phone1" placeholder="تليفون 1" required/>
                 <input type="text" name="phone2" id="officer-phone2" placeholder="تليفون 2" />
                 <input type="text" name="notes" id="officer-notes" placeholder="ملاحظات" />
                 <br />

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->integer('plan_id');
             $table->integer('kateapa_id');
-            $table->enum('day', [1,2,3,4,5,6,7])->nullable(true);
+            $table->enum('day', [1,2,3,4,5,6,7, '-'])->default('-');
             $table->timestamps();
         });
     }

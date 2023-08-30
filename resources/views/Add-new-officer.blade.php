@@ -42,11 +42,11 @@
             @csrf
             <div class="input">
                 <label>الرقم العسكري </label>
-                <input type="text" name="militray_id" id="militray_id" placeholder="أدخل الرقم العسكري" />
+                <input type="text" name="militray_id" id="militray_id" placeholder="أدخل الرقم العسكري" required />
                 <label> رقم الأقدمية </label>
-                <input type="text" name="old_id" id="old_id" placeholder="أدخل رقم الأقدمية" />
+                <input type="text" name="old_id" id="old_id" placeholder="أدخل رقم الأقدمية" required/>
                 <label> الرتبة </label>
-                <select name="degree">
+                <select name="degree" required>
                     <option value="لواء أح"> لواء أح</option>
                     <option value="لواء">لواء</option>
                     <option value="عميد أح"> عميدأح</option>
@@ -62,8 +62,8 @@
                     <option value="ملازم">ملازم </option>
                 </select>
                 <label> الأسم </label>
-                <input type="text" name="name" id="officer-name" placeholder="أدخل أسم الضابط" />
-                <select name="kateba_id">
+                <input type="text" name="name" id="officer-name" placeholder="أدخل أسم الضابط" required/>
+                <select name="kateba_id" required>
                     <option value="1"> قيال 21</option>
                     @foreach ($kataebs as $kataeb)
                         @if ($kataeb->id != 1)
@@ -74,33 +74,33 @@
                     @endforeach
                 </select>
                 <label> تاريخ الأنضمام</label>
-                <input type="date" name="join_at" id="join_at" />
-                <input type="text" name="job" id="officer-job" placeholder="الوظيفة" />
-                <input type="text" name="specialist" id="officer-specialist" placeholder="التخصص" />
+                <input type="date" name="join_at" id="join_at" required/>
+                <input type="text" name="job" id="officer-job" placeholder="الوظيفة" required />
+                <input type="text" name="specialist" id="officer-specialist" placeholder="التخصص" required/>
                 <br />
                 <label>  الفئة </label>
-                <select name="officer_type" id="officer_type">
+                <select name="officer_type" id="officer_type" required>
                     <option value="عامل">عامل</option>
                     <option value="فني">فني</option>
                     <option value="شرف">شرف</option>
                     <option value="احتياط">احتياط</option>
                 </select>
                 <label>  السلاح </label>
-                <select name="gun_id" id="gun">
+                <select name="gun_id" id="gun" required>
                     @foreach ($guns as $gun)
                         <option value="{{ $gun->id }}"> {{ $gun->gun_name }}</option>
                     @endforeach
                 </select>
 
                 <label>  رقم الدفعة </label>
-                <select name="gun_number" id="gun_number">
+                <select name="gun_number" id="gun_number" required>
                     @for ($i = 0; $i < 300; $i++)
                         <option value="{{ $i }}"> {{ $i }}</option>
                     @endfor
                 </select>
                 <label>  تاريخ الميلاد </label>
                 <input type="date" name="birthdate" id="officer-birthdate" />
-                <select  name="university" id="officer-university" >
+                <select  name="university" id="officer-university" required >
                     <option value="حربية">حربية </option>
                     <option value="فنية عسكرية">فنية عسكرية </option>
                     <option value="د جو"> د جو</option>
@@ -110,9 +110,9 @@
                 <input type="text" name="village" id="officer-village"  placeholder="قرية"/>
                 <input type="text" name="country" id="officer-country"  placeholder="مدينة"/>
                 <input type="text" name="goverment" id="officer-goverment"  placeholder="محافظة"/>
-                <input type="text" name="hight" id="officer-hight"  placeholder="الطول"/>
-                <input type="text" name="weight" id="officer-weight"  placeholder="الوزن"/>
-                <input type="text" name="phone1" id="officer-phone1"  placeholder="تليفون 1"/>
+                <input type="text" name="hight" id="officer-hight"  placeholder="الطول" required/>
+                <input type="text" name="weight" id="officer-weight"  placeholder="الوزن" required/>
+                <input type="text" name="phone1" id="officer-phone1"  placeholder="تليفون 1" required/>
                 <input type="text" name="phone2" id="officer-phone2"  placeholder="تليفون 2"/>
                 <input type="text" name="notes" id="officer-notes"  placeholder="ملاحظات"/>
                 <br />

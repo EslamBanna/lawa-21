@@ -29,7 +29,7 @@
         <a href="{{ url('/weekly-traffic-functions') }}">
             <button class="function-button">مخطط مرور القائد</button>
         </a>
-        <a href="{{ url('/') }}">
+        <a href="{{ url('/kataep-plans') }}">
             <button class="function-button">التزامات الكتائب</button>
         </a>
     </div>

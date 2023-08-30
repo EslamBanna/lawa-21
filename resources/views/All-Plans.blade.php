@@ -164,7 +164,10 @@
                         @endif
                     </td>
                     <td>
-                        <a href="{{ url('/delete-officer/' . $plan->id) }}">
+                        <a href="{{ url('/update-plan/' . $plan->id) }}">
+                            <button class="update-btn">تعديل</button>
+                        </a>
+                        <a href="{{ url('/delete-plan-one/' . $plan->id) }}">
                             <button class="delete-btn">حذف</button>
                         </a>
                     </td>

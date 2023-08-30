@@ -33,7 +33,7 @@
 
     td,
     th {
-        padding: 10px
+        padding: 5px
     }
 
     thead {
@@ -75,7 +75,8 @@
     .show-btn:hover {
         cursor: pointer;
     }
-    td{
+
+    td {
         text-align: center
     }
 
@@ -107,12 +108,18 @@
     #add-new-officer button:hover {
         cursor: pointer;
     }
+
+    .kataepa-head {
+        background-color: green;
+        font-weight: bold;
+        color: white
+    }
 </style>
 <div id="tempalte">
     <div id="intro" style="text-align: center">
         <h1>قاعدة بيانات الضباط</h1>
         <a href="{{ url('/') }}">
-            
+
             <button> &LeftArrow; العودة الي الصفحة الرئيسية </button>
         </a>
     </div>
@@ -180,12 +187,20 @@
             </form>
         </div>
     </div>
+
     <div id="add-new-officer" style="text-align: center">
         <a href="{{ url('/add-new-officer') }}">
             <button> إضافة ضابط جديد </button>
         </a>
-        <button style="background-color: green">تنزيل PDF </button>
+        <a href="{{ url('/export-officers') }}">
+            <button style="background-color: green">تنزيل PDF </button>
+        </a>
     </div>
+    <?php
+    $kat = ['قيال ٢١', ' كـ ٤١', 'كـ ٤٣', 'كـ ٤٤', 'كـ ٦٨', 'كـ ٦٩', 'كـ ٧٤', 'كـ ٧٩', '', ''];
+    $current_kat = 0;
+    $bool = false;
+    ?>
     <table>
         <thead>
             <tr>
@@ -220,9 +235,30 @@
             </tr>
 
         </thead>
-        @foreach ($officers as $officer)
+        <tr class="kataepa-head">
+            <td colspan="24">
+                {{ $kat[$current_kat] }}
+            </td>
+        </tr>
+        @foreach ($officers as $index => $officer)
+            @while ($officer->kateba_id != $current_kat + 1)
+                <?php
+                $current_kat++;
+                $bool=  true;
+                ?>
+            @endwhile
+            @if($bool)
+            <tr class="kataepa-head">
+                <td colspan="24">
+                    {{ $kat[$current_kat] }}
+                </td>
+            </tr>
+            <?php 
+            $bool = false;
+            ?>
+            @endif
             <tr>
-                <td>{{ $officer->id }} </td>
+                <td>{{ $index }} </td>
                 <td>{{ $officer->degree }} </td>
                 <td>{{ $officer->militray_id }} </td>
                 <td>{{ $officer->old_id }} </td>
@@ -266,11 +302,13 @@
                 </td>
             </tr>
         @endforeach
+
     </table>
     <script type="text/javascript" src="{{ asset('js/jquery.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/bootstrap.bundle.js') }}"></script>
     <script>
         window.onload = reset()
+
         function reset() {
             document.getElementById('kateaba_name').value = '';
             document.getElementById('gun').value = '';

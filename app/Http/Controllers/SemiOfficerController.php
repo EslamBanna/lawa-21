@@ -84,17 +84,15 @@ class SemiOfficerController extends Controller
 
     public function showSemiOfficer($officer_id)
     {
-        $kataebs  = Kataeb::get();
-        $guns = Guns::get();
-        $officer = SemiOfficer::find($officer_id);
-        return view('Show-semi-officer')->with(['officer' => $officer, 'kataebs' => $kataebs, 'guns' => $guns]);
+        $officer = SemiOfficer::with('Gun')->find($officer_id);
+        return view('Show-semi-officer')->with(['officer' => $officer]);
     }
 
     public function updateSemiOfficer($officer_id)
     {
         $kataebs  = Kataeb::get();
         $guns = Guns::get();
-        $officer = SemiOfficer::find($officer_id);
+        $officer = SemiOfficer::with('Gun')->find($officer_id);
         return view('update-semi-officer')->with(['officer' => $officer, 'kataebs' => $kataebs, 'guns' => $guns]);
     }
 

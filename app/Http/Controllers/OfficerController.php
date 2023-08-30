@@ -18,7 +18,11 @@ class OfficerController extends Controller
         $officers = Officer::with('kateba', 'Gun')
             ->orderBy('kateba_id')
             ->get();
-        return view('officer-database')->with(['kataebs' => $kataebs, 'guns' => $guns, 'officers' => $officers]);
+        return view('officer-database')->with([
+            'kataebs' => $kataebs,
+            'guns' => $guns,
+            'officers' => $officers
+        ]);
     }
     public function filterOfficers(Request $request)
     {
@@ -94,17 +98,15 @@ class OfficerController extends Controller
 
     public function showOfficer($officer_id)
     {
-        $kataebs  = Kataeb::get();
-        $guns = Guns::get();
-        $officer = Officer::find($officer_id);
-        return view('Show-officer')->with(['officer' => $officer, 'kataebs' => $kataebs, 'guns' => $guns]);
+        $officer = Officer::with('Gun')->find($officer_id);
+        return view('Show-officer')->with(['officer' => $officer]);
     }
 
     public function updateOfficer($officer_id)
     {
         $kataebs  = Kataeb::get();
         $guns = Guns::get();
-        $officer = Officer::find($officer_id);
+        $officer = Officer::with('Gun')->find($officer_id);
         return view('update-officer')->with(['officer' => $officer, 'kataebs' => $kataebs, 'guns' => $guns]);
     }
 

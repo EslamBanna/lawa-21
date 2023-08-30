@@ -33,7 +33,6 @@ return new class extends Migration
             $table->string('goverment')->nullable();
             $table->string('hight')->nullable();
             $table->string('weight')->nullable();
-            $table->string('tamam')->nullable();
             $table->string('phone1', 11)->nullable();
             $table->string('phone2', 11)->nullable();
             $table->text('notes')->nullable();

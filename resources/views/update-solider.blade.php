@@ -61,7 +61,7 @@
                         </option>
                         }
                     @else
-                        <option value="{{ $officer->kateba->katepa_name }}">ك {{ $officer->kateba->katepa_name }}</option>
+                        <option value="{{ $officer->kateba->id }}">ك {{ $officer->kateba->katepa_name }}</option>
                     @endif
                     <option value="1"> قيال 21 </option>
                     @foreach ($kataebs as $kataeb)
@@ -83,6 +83,7 @@
                     value="{{ $officer->specialist }}" />
                 <label> السلاح </label>
                 <select name="gun_id" id="gun">
+                    <option value="{{ $officer->gun_id }}" selected> {{ $officer->gun->gun_name }}</option>
                     @foreach ($guns as $gun)
                         <option value="{{ $gun->id }}"> {{ $gun->gun_name }}</option>
                     @endforeach
@@ -109,13 +110,11 @@
                 <label>الوزن </label>
                 <input type="text" name="weight" id="officer-weight" placeholder="الوزن"
                     value="{{ $officer->weight }}" />
-                <label>التمام </label>
-                <input type="text" name="tamam" id="officer-tamam" placeholder="التمام"
-                    value="{{ $officer->tamam }}" />
-                <br />
+    
                 <label> تليفون 1</label>
                 <input type="text" name="phone1" id="officer-phone1" placeholder="تليفون 1"
                     value="{{ $officer->phone1 }}" />
+                    <br />
                 <label> تليفون 2</label>
                 <input type="text" name="phone2" id="officer-phone2" placeholder="تليفون 2"
                     value="{{ $officer->phone2 }}" />

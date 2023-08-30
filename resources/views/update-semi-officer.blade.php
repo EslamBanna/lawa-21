@@ -45,9 +45,9 @@
             <div class="input">
                 <label>الرقم العسكري </label>
                 <input type="text" name="militray_id" id="militray_id" placeholder="أدخل الرقم العسكري"
-                    value="{{ $officer->militray_id }}" />
+                    value="{{ $officer->militray_id }}" required />
                 <label> الدرجة </label>
-                <select name="degree">
+                <select name="degree" required>
                     <option value="{{ $officer->degree }}"> {{ $officer->degree }}</option>
                     <option value="مساعد أ">مساعد أ</option>
                     <option value="مساعد">مساعد</option>
@@ -58,17 +58,17 @@
                 </select>
                 <label> الأسم </label>
                 <input type="text" name="name" id="officer-name" placeholder=" أسم الضابط"
-                    value="{{ $officer->name }}" />
+                    value="{{ $officer->name }}" required/>
                
                 <label> الوحدة</label>
-                <select name="kateba_id">
+                <select name="kateba_id" required>
                     @if ($officer->kateba->katepa_name == 21)
                         {
                         <option value="1">قيال 21
                         </option>
                         }
                     @else
-                        <option value="{{ $officer->kateba->katepa_name }}">ك {{ $officer->kateba->katepa_name }}</option>
+                        <option value="{{ $officer->kateba->id }}">ك {{ $officer->kateba->katepa_name }}</option>
                     @endif
                     <option value="1"> قيال 21 </option>
                     @foreach ($kataebs as $kataeb)
@@ -81,21 +81,22 @@
                 </select>
                 <br />
                 <label> تاريخ الأنضمام</label>
-                <input type="date" name="join_at" id="join_at" value="{{ $officer->join_at }}" />
+                <input type="date" name="join_at" id="join_at" value="{{ $officer->join_at }}" required />
                 <label> الوظيفة</label>
-                <input type="text" name="job" id="officer-job" value="{{ $officer->job }}" placeholder="الوظيفة" />
+                <input type="text" name="job" id="officer-job" value="{{ $officer->job }}" placeholder="الوظيفة" required />
                 <label> التخصص</label>
                 <input type="text" name="specialist" id="officer-specialist" placeholder="التخصص"
-                    value="{{ $officer->specialist }}" />
+                    value="{{ $officer->specialist }}" required/>
                 <label> السلاح </label>
-                <select name="gun_id" id="gun">
+                <select name="gun_id" id="gun" required>
+                    <option value="{{ $officer->gun_id }}">{{ $officer->gun->gun_name }} </option>
                     @foreach ($guns as $gun)
                         <option value="{{ $gun->id }}"> {{ $gun->gun_name }}</option>
                     @endforeach
                 </select>
                 <br />
                 <label> رقم الدفعة </label>
-                <select name="gun_number" id="gun_number">
+                <select name="gun_number" id="gun_number" required>
                     @for ($i = 0; $i < 300; $i++)
                         <option value="{{ $i }}"> {{ $i }}</option>
                     @endfor
@@ -122,12 +123,9 @@
                 <input type="text" name="weight" id="officer-weight" placeholder="الوزن"
                     value="{{ $officer->weight }}" />
                     <br />
-                    <label>التمام </label>
-                <input type="text" name="tamam" id="officer-tamam" placeholder="التمام"
-                    value="{{ $officer->tamam }}" />
                 <label> تليفون 1</label>
                 <input type="text" name="phone1" id="officer-phone1" placeholder="تليفون 1"
-                    value="{{ $officer->phone1 }}" />
+                    value="{{ $officer->phone1 }}" required />
                 <label> تليفون 2</label>
                 <input type="text" name="phone2" id="officer-phone2" placeholder="تليفون 2"
                     value="{{ $officer->phone2 }}" />

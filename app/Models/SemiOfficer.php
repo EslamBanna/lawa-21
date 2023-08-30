@@ -25,7 +25,6 @@ class SemiOfficer extends Model
         'goverment',
         'hight',
         'weight',
-        'tamam',
         'phone1',
         'phone2',
         'notes',
