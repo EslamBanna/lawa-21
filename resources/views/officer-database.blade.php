@@ -123,14 +123,14 @@
             <button> &LeftArrow; العودة الي الصفحة الرئيسية </button>
         </a>
     </div>
-    <div class="row-filtartion">
+    <div class="row-filtartion" style="direction: rtl">
         <div id="filtartion-form">
             <form action="{{ url('/filter-officer') }}" method="POST">
                 @csrf
                 <div id="katepa" class="filtartion-class">
                     <label> أختر الوحدة </label>
                     <select name="kateaba" id="kateaba_name">
-                        <option value="1"> قيال 21</option>
+                        <option value="1"> قيال ٢١</option>
                         @foreach ($kataebs as $kataeb)
                             @if ($kataeb->id != 1)
                                 {
@@ -152,7 +152,7 @@
                     <label> أختر رقم الدفعة </label>
                     <select name="gun_number" id="gun_number">
                         @for ($i = 0; $i < 300; $i++)
-                            <option value="{{ $i }}"> {{ $i }}</option>
+                            <option value="{{ $i }}"> {{ Numbers::ShowInArabicDigits($i) }}</option>
                         @endfor
                     </select>
                 </div>
@@ -165,13 +165,16 @@
                         <option value="احتياط">احتياط</option>
                     </select>
                 </div>
+                <br/>
+                <br/>
                 <button style="width:100px;" class="search-btn" type="submit"> البحث </button>
+                <button style="width:100px; background:red" class="search-btn" onclick="reset()"> RESET </button>
+
             </form>
-            <button style="width:100px; background:red" class="search-btn" onclick="reset()"> RESET </button>
         </div>
     </div>
 
-    <div class="row-filtartion">
+    <div class="row-filtartion" style="direction: rtl">
         <div id="filtartion-form">
             <form action="{{ url('/get-officer') }}" method="POST">
                 @csrf
@@ -182,6 +185,8 @@
                     <span>أو </span>
                     <input type="text" name="old_id" id="officer-old-id" placeholder="أدخل رقم الأقدمية هنا">
                 </div>
+                <br />
+                <br />
                 <button style="width:100px;" class="search-btn" type="submit"> البحث </button>
                 <button style="width:100px; background:red" class="search-btn" type="reset"> RESET </button>
             </form>
@@ -205,10 +210,10 @@
         <thead>
             <tr>
                 <th rowspan="2">م</th>
-                <th rowspan="2">رتبة</th>
+                <th rowspan="2" style="min-width: 50px">رتبة</th>
                 <th rowspan="2">الرقم العسكري</th>
                 <th rowspan="2">رقم الأقدمية</th>
-                <th rowspan="2">الأسم</th>
+                <th rowspan="2" style="width: 200px">الأسم</th>
                 <th rowspan="2">الوحدة</th>
                 <th rowspan="2">تاريخ الضم</th>
                 <th rowspan="2">الكلية</th>
@@ -244,24 +249,24 @@
             @while ($officer->kateba_id != $current_kat + 1)
                 <?php
                 $current_kat++;
-                $bool=  true;
+                $bool = true;
                 ?>
             @endwhile
-            @if($bool)
-            <tr class="kataepa-head">
-                <td colspan="24">
-                    {{ $kat[$current_kat] }}
-                </td>
-            </tr>
-            <?php 
-            $bool = false;
-            ?>
+            @if ($bool)
+                <tr class="kataepa-head">
+                    <td colspan="24">
+                        {{ $kat[$current_kat] }}
+                    </td>
+                </tr>
+                <?php
+                $bool = false;
+                ?>
             @endif
             <tr>
-                <td>{{ $index }} </td>
+                <td>{{ Numbers::ShowInArabicDigits($index + 1) }} </td>
                 <td>{{ $officer->degree }} </td>
-                <td>{{ $officer->militray_id }} </td>
-                <td>{{ $officer->old_id }} </td>
+                <td>{{ Numbers::ShowInArabicDigits($officer->militray_id) }} </td>
+                <td>{{ Numbers::ShowInArabicDigits($officer->old_id) }} </td>
                 <td>{{ $officer->name }} </td>
                 <td>
                     @if ($officer->kateba_id == 1)
@@ -272,23 +277,23 @@
 
 
                 </td>
-                <td>{{ $officer->join_at }} </td>
+                <td>{{ Numbers::ShowInArabicDigits($officer->join_at) }} </td>
                 <td>{{ $officer->university }} </td>
-                <td>{{ $officer->job }} </td>
-                <td>{{ $officer->specialist }} </td>
+                <td>{{ Numbers::ShowInArabicDigits($officer->job) }} </td>
+                <td>{{ Numbers::ShowInArabicDigits($officer->specialist) }} </td>
                 <td>{{ $officer->officer_type }} </td>
                 <td>{{ $officer->Gun->gun_name }} </td>
-                <td>{{ $officer->gun_number }} </td>
-                <td>{{ $officer->birthdate }} </td>
-                <td>{{ $officer->street }} </td>
-                <td>{{ $officer->village }} </td>
-                <td>{{ $officer->country }} </td>
+                <td>{{ Numbers::ShowInArabicDigits($officer->gun_number) }} </td>
+                <td>{{ Numbers::ShowInArabicDigits($officer->birthdate) }} </td>
+                <td>{{ Numbers::ShowInArabicDigits($officer->street) }} </td>
+                <td>{{ Numbers::ShowInArabicDigits($officer->village) }} </td>
+                <td>{{ Numbers::ShowInArabicDigits($officer->country) }} </td>
                 <td>{{ $officer->goverment }} </td>
-                <td>{{ $officer->hight }} </td>
-                <td>{{ $officer->weight }} </td>
-                <td>{{ $officer->phone1 }} </td>
-                <td>{{ $officer->phone2 }} </td>
-                <td>{{ $officer->notes }} </td>
+                <td>{{ Numbers::ShowInArabicDigits($officer->hight) }} </td>
+                <td>{{ Numbers::ShowInArabicDigits($officer->weight) }} </td>
+                <td>{{ Numbers::ShowInArabicDigits($officer->phone1) }} </td>
+                <td>{{ Numbers::ShowInArabicDigits($officer->phone2) }} </td>
+                <td>{{ Numbers::ShowInArabicDigits($officer->notes) }} </td>
                 <td>
                     <a href="{{ url('/show-officer/' . $officer->id) }}">
                         <button class="show-btn">عرض</button>
