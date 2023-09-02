@@ -46,4 +46,29 @@ class PDFController extends Controller
         $pdf = PDF::loadHTML($reportHtml)->setPaper('a4', 'landscape');
         return $pdf->download('officers.pdf');
     }
+
+    public function exportPdfCard(Request $request)
+    {
+        try {
+            $officer = json_decode($request->officer);
+            $photo_len = strlen((isset($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/images/officers/');
+            $officer_image = substr($officer->image, $photo_len);
+            $photo_len = strlen((isset($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/images/officers_id_images/');
+            $id_image = substr($officer->id_image, $photo_len);
+            $photo_len = strlen((isset($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/images/officers_militray_images/');
+            $militray_image = substr($officer->militray_image, $photo_len);
+            $reportHtml = view('officer-pdf-card',  compact('officer', 'officer_image','id_image', 'militray_image'))->render();
+            $arabic = new Arabic();
+            $p = $arabic->arIdentify($reportHtml);
+
+            for ($i = count($p) - 1; $i >= 0; $i -= 2) {
+                $utf8ar = $arabic->utf8Glyphs(substr($reportHtml, $p[$i - 1], $p[$i] - $p[$i - 1]));
+                $reportHtml = substr_replace($reportHtml, $utf8ar, $p[$i - 1], $p[$i] - $p[$i - 1]);
+            }
+            $pdf = PDF::loadHTML($reportHtml)->setPaper('a4', 'landscape');
+            return $pdf->download('officer-card.pdf');
+        } catch (\Exception $e) {
+            return $e->getMessage();
+        }
+    }
 }

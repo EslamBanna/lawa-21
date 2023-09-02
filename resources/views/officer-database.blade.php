@@ -233,7 +233,7 @@
                 <th rowspan="2">تليفون ١</th>
                 <th rowspan="2">تليفون ٢</th>
                 <th rowspan="2">الملاحظات</th>
-                <th rowspan="2">عمليات</th>
+                <th rowspan="2" style="width: 50px">عمليات</th>
             </tr>
 
             <tr>

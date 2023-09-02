@@ -48,15 +48,15 @@ class OfficerController extends Controller
     {
         $filteration = '';
         if ($request->officer_name != null) {
-            $filteration = Officer::where('name', 'like', '%' . $request->officer_name . '%')
+            $filteration = Officer::with(['kateba', 'Gun'])->where('name', 'like', '%' . $request->officer_name . '%')
                 ->orderBy('kateba_id')
                 ->get();
         }
         if ($request->militray_id != null) {
-            $filteration = Officer::where('militray_id', 'like', '%' . $request->militray_id . '%')->get();
+            $filteration = Officer::with(['kateba', 'Gun'])->where('militray_id', 'like', '%' . $request->militray_id . '%')->get();
         }
         if ($request->old_id != null) {
-            $filteration = Officer::where('old_id', 'like', '%' . $request->old_id . '%')->get();
+            $filteration = Officer::with(['kateba', 'Gun'])->where('old_id', 'like', '%' . $request->old_id . '%')->get();
         }
         $kataebs  = Kataeb::get();
         $guns = Guns::get();

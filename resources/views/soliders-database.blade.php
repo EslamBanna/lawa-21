@@ -123,8 +123,8 @@
         </a>
     </div>
     <div class="row-filtartion">
-        <div id="filtartion-form">
-            <form action="{{ url('/filter-soliders') }}" method="POST">
+        <div id="filtartion-form"  style="direction: rtl">
+            <form action="{{ url('/filter-soliders') }}" method="POST" style="display:inline">
                 @csrf
                 <div id="katepa" class="filtartion-class">
                     <label> أختر الوحدة </label>
@@ -147,13 +147,15 @@
                         @endforeach
                     </select>
                 </div>
+                <br />
+                <br />
                 <button style="width:100px;" class="search-btn" type="submit"> البحث </button>
             </form>
             <button style="width:100px; background:red" class="search-btn" onclick="reset()"> RESET </button>
         </div>
     </div>
 
-    <div class="row-filtartion">
+    <div class="row-filtartion" style="direction: rtl">
         <div id="filtartion-form">
             <form action="{{ url('/get-solider') }}" method="POST">
                 @csrf
@@ -162,6 +164,8 @@
                     <span>أو </span>
                     <input type="text" name="militray_id" id="officer-id" placeholder="أدخل الرقم العسكري هنا">
                 </div>
+                <br />
+                <br />
                 <button style="width:100px;" class="search-btn" type="submit"> البحث </button>
                 <button style="width:100px; background:red" class="search-btn" type="reset"> RESET </button>
             </form>
