@@ -33,7 +33,7 @@ class SemiOfficerController extends Controller
         if ($request->officer_type != '') {
             $filter['officer_type'] = $request->officer_type;
         }
-        $filteration = SemiOfficer::where($filter)->get();
+        $filteration = SemiOfficer::with(['kateba', 'Gun'])->where($filter)->get();
         $kataebs  = Kataeb::get();
         $guns = Guns::get();
         return view('semi-officer-database')->with(['kataebs' => $kataebs, 'guns' => $guns, 'officers' => $filteration]);
@@ -45,7 +45,7 @@ class SemiOfficerController extends Controller
             $filteration = SemiOfficer::where('name', 'like', '%' . $request->officer_name . '%')->get();
         }
         if ($request->militray_id != null) {
-            $filteration = SemiOfficer::where('militray_id', $request->militray_id)->get();
+            $filteration = SemiOfficer::where('militray_id', 'like', '%' . $request->militray_id . '%')->get();
         }
         $kataebs  = Kataeb::get();
         $guns = Guns::get();

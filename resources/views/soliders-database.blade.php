@@ -171,8 +171,11 @@
         <a href="{{ url('/add-new-solider') }}">
             <button> إضافةجندي جديد </button>
         </a>
-        <button style="background-color: green">تنزيل PDF </button>
-    </div>
+        <form action="{{ url('/export-officers') }}" method="POST" style="display: inline">
+            @csrf
+            <input type="hidden" value="{{ $officers }}" name="soliders" />
+            <button style="background-color: green" type="submit">تنزيل PDF </button>
+        </form>    </div>
     <?php
     $kat = ['قيال ٢١', ' كـ ٤١', 'كـ ٤٣', 'كـ ٤٤', 'كـ ٦٨', 'كـ ٦٩', 'كـ ٧٤', 'كـ ٧٩', '', ''];
     $current_kat = 0;
@@ -194,8 +197,8 @@
                 <th rowspan="1" colspan="4"> العنوان</th>
                 <th rowspan="2">طول</th>
                 <th rowspan="2">وزن</th>
-                <th rowspan="2">تليفون 1</th>
-                <th rowspan="2">تليفون 2</th>
+                <th rowspan="2">تليفون ١</th>
+                <th rowspan="2">تليفون ٢</th>
                 <th rowspan="2">الملاحظات</th>
                 <th rowspan="2">عمليات</th>
             </tr>
@@ -224,14 +227,41 @@
                         {{ $kat[$current_kat] }}
                     </td>
                 </tr>
+                <thead>
+                    <tr>
+                        <th rowspan="2">م</th>
+                        <th rowspan="2">درجة</th>
+                        <th rowspan="2">الرقم العسكري</th>
+                        <th rowspan="2">الأسم</th>
+                        <th rowspan="2">الوحدة</th>
+                        <th rowspan="2">تاريخ الضم</th>
+                        <th rowspan="2">المؤهل</th>
+                        <th rowspan="2">التخصص بالوحدة</th>
+                        <th rowspan="2">السلاح</th>
+                        <th rowspan="2">تاريخ الميلاد</th>
+                        <th rowspan="1" colspan="4"> العنوان</th>
+                        <th rowspan="2">طول</th>
+                        <th rowspan="2">وزن</th>
+                        <th rowspan="2">تليفون ١</th>
+                        <th rowspan="2">تليفون ٢</th>
+                        <th rowspan="2">الملاحظات</th>
+                        <th rowspan="2">عمليات</th>
+                    </tr>
+                    <tr>
+                        <th colspan="1">شارع</th>
+                        <th colspan="1">قرية</th>
+                        <th colspan="1">مدينة</th>
+                        <th colspan="1">محافظة</th>
+                    </tr>
+                </thead>
                 <?php
                 $bool = false;
                 ?>
             @endif        
             <tr>
-                <td>{{ $index }} </td>
+                <td>{{ Numbers::ShowInArabicDigits(++$index) }} </td>
                 <td>{{ $officer->degree }} </td>
-                <td>{{ $officer->militray_id }} </td>
+                <td>{{ Numbers::ShowInArabicDigits($officer->militray_id) }} </td>
                 <td>{{ $officer->name }} </td>
                 <td>
                     @if ($officer->kateba_id == 1)
@@ -240,21 +270,21 @@
                         ك {{ $officer->kateba->katepa_name }}
                     @endif
                 </td>
-                <td>{{ $officer->join_at }} </td>
+                <td>{{ Numbers::ShowInArabicDigits($officer->join_at) }} </td>
                 <td>{{ $officer->certification }} </td>
                 <td>{{ $officer->specialist }} </td>
                 <td>{{ $officer->Gun->gun_name }} </td>
-                <td>{{ $officer->birthdate }} </td>
-                <td>{{ $officer->street }} </td>
+                <td>{{ Numbers::ShowInArabicDigits($officer->birthdate) }} </td>
+                <td>{{ Numbers::ShowInArabicDigits($officer->street) }} </td>
                 <td>{{ $officer->village }} </td>
                 <td>{{ $officer->country }} </td>
                 <td>{{ $officer->goverment }} </td>
-                <td>{{ $officer->hight }} </td>
-                <td>{{ $officer->weight }} </td>
-                <td>{{ $officer->phone1 }} </td>
-                <td>{{ $officer->phone2 }} </td>
+                <td>{{ Numbers::ShowInArabicDigits($officer->hight) }} </td>
+                <td>{{ Numbers::ShowInArabicDigits($officer->weight) }} </td>
+                <td>{{ Numbers::ShowInArabicDigits($officer->phone1) }} </td>
+                <td>{{ Numbers::ShowInArabicDigits($officer->phone2) }} </td>
                 <td>{{ $officer->notes }} </td>
-                <td style="text-align: center">
+                <td style="text-align: center; width:50px">
                     <a href="{{ url('/show-solider/' . $officer->id) }}">
                         <button class="show-btn">عرض</button>
                     </a>

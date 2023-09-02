@@ -73,7 +73,7 @@ Route::post('/save-update-plan/{plan_id}', [PlanController::class, 'saveUpdatePl
 Route::get('/delete-plan-one/{plan_id}', [PlanController::class, 'deletePlanOne']);
 Route::get('/delete-plan/{plan_id}', [PlanController::class, 'deletePlan']);
 ####################### Export PDF ######################################################
-Route::get('/export-officers', [PDFController::class, 'exportPdf']);
+Route::post('/export-officers', [PDFController::class, 'exportPdf']);
 
 
 

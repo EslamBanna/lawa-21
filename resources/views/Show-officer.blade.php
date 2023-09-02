@@ -55,79 +55,79 @@
         </div>
         <div class="input">
             <label>الرقم العسكري </label>
-            <input type="text" name="militray_id" id="militray_id" placeholder=" الرقم العسكري"
-                value="{{ $officer->militray_id }}" disabled />
+            <input type="text" name="militray_id" id="militray_id"
+                value="{{ Numbers::ShowInArabicDigits($officer->militray_id) }}" disabled />
             <label> رقم الأقدمية </label>
-            <input type="text" name="old_id" id="old_id" value="{{ $officer->old_id }}" placeholder=" رقم الأقدمية"
+            <input type="text" name="old_id" id="old_id" value="{{ Numbers::ShowInArabicDigits($officer->old_id) }}" placeholder=" رقم الأقدمية"
                 disabled />
             <label> الرتبة </label>
-            <input type="text" name="degree" id="degree" value="{{ $officer->degree }}" placeholder=" رقم الأقدمية"
+            <input type="text" name="degree" id="degree" value="{{ $officer->degree }}"
             disabled />
 
             <label> الأسم </label>
-            <input type="text" name="name" id="officer-name" placeholder=" أسم الضابط" value="{{ $officer->name }}"
+            <input type="text" name="name" id="officer-name" value="{{ $officer->name }}"
                 disabled />
             <br />
             <label> الوحدة</label>
-            <input type="text" name="kateba_id" id="kateba_id" value="{{ $officer->kateba->katepa_name }}" placeholder=" الوحدة"
+            <input type="text" name="kateba_id" id="kateba_id" value="{{ $officer->kateba->katepa_name }}"
             disabled />
 
             <label> تاريخ الأنضمام</label>
-            <input type="date" name="join_at" id="join_at" value="{{ $officer->join_at }}" disabled />
+            <input type="text" name="join_at" id="join_at" value="{{ Numbers::ShowInArabicDigits($officer->join_at) }}" disabled />
             <label> الوظيفة</label>
-            <input type="text" name="job" id="officer-job" value="{{ $officer->job }}" placeholder="الوظيفة"
+            <input type="text" name="job" id="officer-job" value="{{ $officer->job }}"
                 disabled />
             <label> التخصص</label>
-            <input type="text" name="specialist" id="officer-specialist" placeholder="التخصص"
-                value="{{ $officer->specialist }}" disabled />
+            <input type="text" name="specialist" id="officer-specialist"
+                value="{{ Numbers::ShowInArabicDigits($officer->specialist) }}" disabled />
             <br />
             <label> الفئة </label>
-            <input type="text" name="officer_type" id="officer_type" value="{{ $officer->officer_type }}" placeholder=" الفئة"
+            <input type="text" name="officer_type" id="officer_type" value="{{ $officer->officer_type }}"
             disabled />
 
             <label> السلاح </label>
-            <input type="text" name="gun_id" id="gun_id" value="{{ $officer->gun->gun_name }}" placeholder=" السلاح"
+            <input type="text" name="gun_id" id="gun_id" value="{{ $officer->gun->gun_name }}"
             disabled />
 
             <label> رقم الدفعة </label>
-            <input type="text" name="gun_number" id="gun_number" value="{{ $officer->gun_number }}" placeholder=" رقم الدفعة "
+            <input type="text" name="gun_number" id="gun_number" value="{{ Numbers::ShowInArabicDigits($officer->gun_number) }}"
             disabled />
 
             <label> تاريخ الميلاد </label>
             <input type="date" name="birthdate" id="officer-birthdate" value="{{ $officer->birthdate }}" disabled />
            <br />
             <label> شارع</label>
-            <input type="text" name="street" id="officer-street" placeholder="شارع" value="{{ $officer->street }}"
+            <input type="text" name="street" id="officer-street" value="{{ Numbers::ShowInArabicDigits($officer->street) }}"
                 disabled />
             <label>قرية </label>
-            <input type="text" name="village" id="officer-village" placeholder="قرية" value="{{ $officer->village }}"
+            <input type="text" name="village" id="officer-village" value="{{ $officer->village }}"
                 disabled />
             <label>مدينة </label>
-            <input type="text" name="country" id="officer-country" placeholder="مدينة" value="{{ $officer->country }}"
+            <input type="text" name="country" id="officer-country" value="{{ $officer->country }}"
                 disabled />
             <label> محافظة</label>
-            <input type="text" name="goverment" id="officer-goverment" placeholder="محافظة"
+            <input type="text" name="goverment" id="officer-goverment"
                 value="{{ $officer->goverment }}" disabled />
             <br />
             <label> الطول</label>
-            <input type="text" name="hight" id="officer-hight" placeholder="الطول" value="{{ $officer->hight }}"
+            <input type="text" name="hight" id="officer-hight" value="{{ Numbers::ShowInArabicDigits($officer->hight) }}"
                 disabled />
             <label>الوزن </label>
-            <input type="text" name="weight" id="officer-weight" placeholder="الوزن" value="{{ $officer->weight }}"
+            <input type="text" name="weight" id="officer-weight" value="{{ Numbers::ShowInArabicDigits($officer->weight) }}"
                 disabled />
             <label> تليفون 1</label>
-            <input type="text" name="phone1" id="officer-phone1" placeholder="تليفون 1" value="{{ $officer->phone1 }}"
+            <input type="text" name="phone1" id="officer-phone1" value="{{ Numbers::ShowInArabicDigits($officer->phone1) }}"
                 disabled />
                 <label> تليفون 2</label>
-                <input type="text" name="phone2" id="officer-phone2" placeholder="تليفون 2" value="{{ $officer->phone2 }}"
+                <input type="text" name="phone2" id="officer-phone2" value="{{ Numbers::ShowInArabicDigits($officer->phone2) }}"
                     disabled />
             <br />
       
             <label> الكلية</label>
-                <input type="text" name="university" id="officer-university" placeholder="الكلية" value="{{ $officer->university }}"
+                <input type="text" name="university" id="officer-university" value="{{ $officer->university }}"
                 disabled />
             <label> ملاحظات</label>
-            <input type="text" name="notes" id="officer-notes" placeholder="ملاحظات" value="{{ $officer->notes }}"
+            <input type="text" name="notes" id="officer-notes" value="{{ $officer->notes }}"
                 disabled />
                 <br />
                 <button class="download">تنزيل PDF </button>

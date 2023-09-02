@@ -21,11 +21,19 @@ class PDFController extends Controller
         return $pdf->download('tutsmake.pdf');
     }
 
-    public function exportPdf()
+    public function exportPdf(Request $request)
     {
-        $officers = Officer::all();
+        $officers = json_decode($request->officers);
         // $officers = $officers->sortBy('name');
-        $reportHtml = view('officers-pdf',  compact('officers'))->render();
+        $view_name = 'officers-pdf';
+        if ($request->has('semi_officers')) {
+            $view_name = 'semi-officers-pdf';
+            $officers = json_decode($request->semi_officers);
+        } else if ($request->has('soliders')) {
+            $view_name = 'soliders-pdf';
+            $officers = json_decode($request->soliders);
+        }
+        $reportHtml = view($view_name,  compact('officers'))->render();
 
         $arabic = new Arabic();
         $p = $arabic->arIdentify($reportHtml);

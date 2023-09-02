@@ -36,7 +36,7 @@ class SoliderController extends Controller
         if ($request->officer_type != '') {
             $filter['officer_type'] = $request->officer_type;
         }
-        $filteration = Solider::where($filter)->get();
+        $filteration = Solider::with(['kateba', 'Gun'])->where($filter)->get();
         $kataebs  = Kataeb::get();
         $guns = Guns::get();
         return view('soliders-database')->with(['kataebs' => $kataebs, 'guns' => $guns, 'officers' => $filteration]);

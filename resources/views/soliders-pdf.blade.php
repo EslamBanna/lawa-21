@@ -48,24 +48,20 @@
 <body>
     <div id="tempalte">
         <div id="intro" style="text-align: center">
-            <h1>قاعدة بيانات ضباط اللواء 21 إنذار</h1>
+            <h1>قاعدة بيانات جنود اللواء 21 إنذار</h1>
         </div>
         <table>
             <thead>
                 <tr>
                     <th rowspan="2">م</th>
-                    <th rowspan="2" style="min-width: 30px">رتبة</th>
+                    <th rowspan="2" style="min-width: 30px">درجة</th>
                     <th rowspan="2">الرقم العسكري</th>
-                    <th rowspan="2">رقم الأقدمية</th>
                     <th rowspan="2" style="width: 150px">الأسم</th>
                     <th rowspan="2">الوحدة</th>
+                    <th rowspan="2">المؤهل</th>
                     <th rowspan="2">تاريخ الضم</th>
-                    <th rowspan="2">الكلية</th>
-                    <th rowspan="2">الوظيفة</th>
                     <th rowspan="2">التخصص</th>
-                    <th rowspan="2">فئة الضابط</th>
                     <th rowspan="2">السلاح</th>
-                    <th rowspan="2">رقم الدفعة</th>
                     <th rowspan="2">تاريخ الميلاد</th>
                     <th rowspan="1" colspan="4"> العنوان</th>
                     <th rowspan="2">طول</th>
@@ -88,7 +84,6 @@
                     <td>{{ Str::reverse(Numbers::ShowInArabicDigits(($index+1))) }} </td>
                     <td>{{ $officer->degree }} </td>
                     <td lang="ar">{{Str::reverse( Numbers::ShowInArabicDigits($officer->militray_id)) }} </td>
-                    <td>{{ Str::reverse( Numbers::ShowInArabicDigits($officer->old_id)) }} </td>
                     <td>{{ $officer->name }} </td>
                     <td>
                         @if ($officer->kateba_id == 1)
@@ -99,13 +94,10 @@
 
 
                     </td>
+                    <td>{{$officer->certification }} </td>
                     <td>{{Str::reverse( Numbers::ShowInArabicDigits($officer->join_at)) }} </td>
-                    <td>{{ $officer->university }} </td>
-                    <td>{{ Numbers::ShowInArabicDigits($officer->job) }} </td>
                     <td>{{ Numbers::ShowInArabicDigits($officer->specialist) }} </td>
-                    <td>{{ $officer->officer_type }} </td>
                     <td>{{ $officer->gun->gun_name }} </td>
-                    <td>{{ Str::reverse(Numbers::ShowInArabicDigits($officer->gun_number)) }} </td>
                     <td>{{ Numbers::ShowInArabicDigits($officer->birthdate) }} </td>
                     <td>{{ Numbers::ShowInArabicDigits($officer->street) }} </td>
                     <td>{{ $officer->village }} </td>

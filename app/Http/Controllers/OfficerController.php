@@ -39,7 +39,7 @@ class OfficerController extends Controller
         if ($request->officer_type != '') {
             $filter['officer_type'] = $request->officer_type;
         }
-        $filteration = Officer::where($filter)->get();
+        $filteration = Officer::with(['kateba', 'Gun'])->where($filter)->get();
         $kataebs  = Kataeb::get();
         $guns = Guns::get();
         return view('officer-database')->with(['kataebs' => $kataebs, 'guns' => $guns, 'officers' => $filteration]);
@@ -53,10 +53,10 @@ class OfficerController extends Controller
                 ->get();
         }
         if ($request->militray_id != null) {
-            $filteration = Officer::where('militray_id', $request->militray_id)->get();
+            $filteration = Officer::where('militray_id', 'like', '%' . $request->militray_id . '%')->get();
         }
         if ($request->old_id != null) {
-            $filteration = Officer::where('old_id', $request->old_id)->get();
+            $filteration = Officer::where('old_id', 'like', '%' . $request->old_id . '%')->get();
         }
         $kataebs  = Kataeb::get();
         $guns = Guns::get();

@@ -125,7 +125,7 @@
     </div>
     <div class="row-filtartion" style="direction: rtl">
         <div id="filtartion-form">
-            <form action="{{ url('/filter-officer') }}" method="POST">
+            <form action="{{ url('/filter-officer') }}" method="POST" style="display: inline">
                 @csrf
                 <div id="katepa" class="filtartion-class">
                     <label> أختر الوحدة </label>
@@ -165,12 +165,11 @@
                         <option value="احتياط">احتياط</option>
                     </select>
                 </div>
-                <br/>
-                <br/>
+                <br />
+                <br />
                 <button style="width:100px;" class="search-btn" type="submit"> البحث </button>
-                <button style="width:100px; background:red" class="search-btn" onclick="reset()"> RESET </button>
-
             </form>
+            <button style="width:100px; background:red" class="search-btn" onclick="reset()"> RESET </button>
         </div>
     </div>
 
@@ -197,9 +196,14 @@
         <a href="{{ url('/add-new-officer') }}">
             <button> إضافة ضابط جديد </button>
         </a>
-        <a href="{{ url('/export-officers') }}">
+        <form action="{{ url('/export-officers') }}" method="POST" style="display: inline">
+            @csrf
+            <input type="hidden" value="{{ $officers }}" name="officers" />
+            <button style="background-color: green" type="submit">تنزيل PDF </button>
+        </form>
+        {{-- <a href="{{ url('/export-officers') }}">
             <button style="background-color: green">تنزيل PDF </button>
-        </a>
+        </a> --}}
     </div>
     <?php
     $kat = ['قيال ٢١', ' كـ ٤١', 'كـ ٤٣', 'كـ ٤٤', 'كـ ٦٨', 'كـ ٦٩', 'كـ ٧٤', 'كـ ٧٩', '', ''];
@@ -226,8 +230,8 @@
                 <th rowspan="1" colspan="4"> العنوان</th>
                 <th rowspan="2">طول</th>
                 <th rowspan="2">وزن</th>
-                <th rowspan="2">تليفون 1</th>
-                <th rowspan="2">تليفون 2</th>
+                <th rowspan="2">تليفون ١</th>
+                <th rowspan="2">تليفون ٢</th>
                 <th rowspan="2">الملاحظات</th>
                 <th rowspan="2">عمليات</th>
             </tr>
@@ -258,6 +262,39 @@
                         {{ $kat[$current_kat] }}
                     </td>
                 </tr>
+                <thead>
+                    <tr>
+                        <th rowspan="2">م</th>
+                        <th rowspan="2" style="min-width: 50px">رتبة</th>
+                        <th rowspan="2">الرقم العسكري</th>
+                        <th rowspan="2">رقم الأقدمية</th>
+                        <th rowspan="2" style="width: 200px">الأسم</th>
+                        <th rowspan="2">الوحدة</th>
+                        <th rowspan="2">تاريخ الضم</th>
+                        <th rowspan="2">الكلية</th>
+                        <th rowspan="2">الوظيفة</th>
+                        <th rowspan="2">التخصص</th>
+                        <th rowspan="2">نوع الضابط</th>
+                        <th rowspan="2">السلاح</th>
+                        <th rowspan="2">رقم الدفعة</th>
+                        <th rowspan="2">تاريخ الميلاد</th>
+                        <th rowspan="1" colspan="4"> العنوان</th>
+                        <th rowspan="2">طول</th>
+                        <th rowspan="2">وزن</th>
+                        <th rowspan="2">تليفون ١</th>
+                        <th rowspan="2">تليفون ٢</th>
+                        <th rowspan="2">الملاحظات</th>
+                        <th rowspan="2">عمليات</th>
+                    </tr>
+
+                    <tr>
+                        <th colspan="1">شارع</th>
+                        <th colspan="1">قرية</th>
+                        <th colspan="1">مدينة</th>
+                        <th colspan="1">محافظة</th>
+                    </tr>
+
+                </thead>
                 <?php
                 $bool = false;
                 ?>
