@@ -58,11 +58,11 @@
 
         td {
             text-align: right;
-            line-height: 20px
+            line-height: 15px
         }
 
         #officer-data {
-            margin-top: 50px;
+            margin-top: 30px;
         }
     </style>
 </head>
@@ -71,12 +71,13 @@
     <div id="officer-card">
         <div id="header">
             <div id="depaga">
-                <span> قــوات الدفــــاع الجـــوي </span>
+                {{-- <span> قــوات الدفــــاع الجـــوي </span> --}}
                 <span> الــفــرقـة الـعـاشـرة دجــو</span>
                 <span>قيادة الـلــــواء 21 إنـــذار </span>
+                <span> الـــتـــاريــخ: {{ date('d-m-Y')}}</span>
             </div>
             <div id="logo">
-            <img src="{{ public_path() . '/icon.png' }}" alt="logo" width="100px" height="100px">
+            <img src="{{ public_path() . '/icon.png' }}" alt="logo" width="70px" height="70px">
         </div>
         </div>
         <div id="officer-data">
@@ -148,6 +149,12 @@
                         @endif
                     </td>
                 </tr> 
+                <tr> </tr>
+                <tr>
+                    <td> يعتمد,,, </td>
+                </tr>
+                <tr> </tr>
+                <tr> </tr>
             </table>
         </div>
     </div>
