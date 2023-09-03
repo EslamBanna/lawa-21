@@ -10,7 +10,7 @@ class SemiOfficer extends Model
     use HasFactory;
     protected $fillable = [
         'militray_id',
-        'degree',
+        'degree_id',
         'name',
         'kateba_id',
         'join_at',
@@ -59,5 +59,10 @@ class SemiOfficer extends Model
     {
         $actual_link = (isset($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/';
         return ($value == null ? '' : $actual_link . 'images/semi_officers_militray_images/' . $value);
+    }
+
+    public function degree()
+    {
+        return $this->belongsTo(Degree::class, 'degree_id');
     }
 }

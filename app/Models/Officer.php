@@ -11,7 +11,7 @@ class Officer extends Model
     protected $fillable = [
         'militray_id',
         'old_id',
-        'degree',
+        'degree_id',
         'name',
         'kateba_id',
         'join_at',
@@ -63,5 +63,10 @@ class Officer extends Model
     {
         $actual_link = (isset($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/';
         return ($value == null ? '' : $actual_link . 'images/officers_militray_images/' . $value);
+    }
+
+    public function degree()
+    {
+        return $this->belongsTo(Degree::class, 'degree_id');
     }
 }

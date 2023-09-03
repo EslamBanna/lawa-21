@@ -86,7 +86,7 @@
             @foreach ($officers as $index=> $officer)
                 <tr>
                     <td>{{ Str::reverse(Numbers::ShowInArabicDigits(($index+1))) }} </td>
-                    <td>{{ $officer->degree }} </td>
+                    <td>{{ $officer->degree->name }} </td>
                     <td lang="ar">{{Str::reverse( Numbers::ShowInArabicDigits($officer->militray_id)) }} </td>
                     <td>{{ Str::reverse( Numbers::ShowInArabicDigits($officer->old_id)) }} </td>
                     <td>{{ $officer->name }} </td>

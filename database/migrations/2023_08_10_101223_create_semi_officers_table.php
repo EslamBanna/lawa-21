@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('semi_officers', function (Blueprint $table) {
             $table->id();
             $table->string('militray_id');
-            $table->string('degree',10);
+            $table->integer('degree_id');
             $table->string('name');
             $table->integer('kateba_id');
             // $table->foreignId('belongs_to')->constrained('Kataebs')->onDelete('cascade');

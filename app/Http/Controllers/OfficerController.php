@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Degree;
 use App\Models\Guns;
 use App\Models\Kataeb;
 use App\Models\Officer;
@@ -15,8 +16,9 @@ class OfficerController extends Controller
     {
         $kataebs  = Kataeb::get();
         $guns = Guns::get();
-        $officers = Officer::with('kateba', 'Gun')
+        $officers = Officer::with('kateba', 'Gun', 'degree')
             ->orderBy('kateba_id')
+            ->orderBy('degree_id')
             ->get();
         return view('officer-database')->with([
             'kataebs' => $kataebs,
@@ -39,7 +41,10 @@ class OfficerController extends Controller
         if ($request->officer_type != '') {
             $filter['officer_type'] = $request->officer_type;
         }
-        $filteration = Officer::with(['kateba', 'Gun'])->where($filter)->get();
+        $filteration = Officer::with(['kateba', 'Gun', 'degree'])
+            ->orderBy('kateba_id')
+            ->orderBy('degree_id')
+            ->where($filter)->get();
         $kataebs  = Kataeb::get();
         $guns = Guns::get();
         return view('officer-database')->with(['kataebs' => $kataebs, 'guns' => $guns, 'officers' => $filteration]);
@@ -48,15 +53,16 @@ class OfficerController extends Controller
     {
         $filteration = '';
         if ($request->officer_name != null) {
-            $filteration = Officer::with(['kateba', 'Gun'])->where('name', 'like', '%' . $request->officer_name . '%')
+            $filteration = Officer::with(['kateba', 'Gun', 'degree'])->where('name', 'like', '%' . $request->officer_name . '%')
                 ->orderBy('kateba_id')
+                ->orderBy('degree_id')
                 ->get();
         }
         if ($request->militray_id != null) {
-            $filteration = Officer::with(['kateba', 'Gun'])->where('militray_id', 'like', '%' . $request->militray_id . '%')->get();
+            $filteration = Officer::with(['kateba', 'Gun', 'degree'])->where('militray_id', 'like', '%' . $request->militray_id . '%')->get();
         }
         if ($request->old_id != null) {
-            $filteration = Officer::with(['kateba', 'Gun'])->where('old_id', 'like', '%' . $request->old_id . '%')->get();
+            $filteration = Officer::with(['kateba', 'Gun', 'degree'])->where('old_id', 'like', '%' . $request->old_id . '%')->get();
         }
         $kataebs  = Kataeb::get();
         $guns = Guns::get();
@@ -67,7 +73,8 @@ class OfficerController extends Controller
     {
         $kataebs  = Kataeb::get();
         $guns = Guns::get();
-        return view('Add-new-officer')->with(['kataebs' => $kataebs, 'guns' => $guns]);
+        $degrees = Degree::get();
+        return view('Add-new-officer')->with(['kataebs' => $kataebs, 'guns' => $guns, 'degrees' => $degrees]);
     }
 
     public function addOfficer(Request $request)
@@ -106,8 +113,16 @@ class OfficerController extends Controller
     {
         $kataebs  = Kataeb::get();
         $guns = Guns::get();
+        $degrees = Degree::get();
         $officer = Officer::with('Gun')->find($officer_id);
-        return view('update-officer')->with(['officer' => $officer, 'kataebs' => $kataebs, 'guns' => $guns]);
+        return view('update-officer')->with(
+            [
+                'officer' => $officer,
+                'kataebs' => $kataebs,
+                'guns' => $guns,
+                'degrees' => $degrees
+            ]
+        );
     }
 
     public function updateOfficerData(Request $request, $officer_id)

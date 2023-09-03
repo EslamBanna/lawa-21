@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('militray_id');
             $table->string('old_id', 10);
-            $table->string('degree', 10);
+            $table->integer('degree_id');
             $table->string('name');
             $table->integer('kateba_id');
             $table->string('join_at')->nullable();

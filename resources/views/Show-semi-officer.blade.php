@@ -77,7 +77,7 @@
             <input type="text" name="militray_id" id="militray_id"
                 value="{{ Numbers::ShowInArabicDigits($officer->militray_id) }}" disabled />
             <label> الدرجة </label>
-            <input type="text" name="degree" id="militray_id" value="{{ $officer->degree }}" disabled />
+            <input type="text" name="degree" id="militray_id" value="{{ $officer->degree->name }}" disabled />
 
             <label> الأسم </label>
             <input type="text" name="name" id="officer-name" value="{{ $officer->name }}" disabled />

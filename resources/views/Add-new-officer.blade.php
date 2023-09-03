@@ -46,23 +46,15 @@
                 <label> رقم الأقدمية </label>
                 <input type="text" name="old_id" id="old_id" placeholder="أدخل رقم الأقدمية" required/>
                 <label> الرتبة </label>
-                <select name="degree" required>
-                    <option value="لواء أح"> لواء أح</option>
-                    <option value="لواء">لواء</option>
-                    <option value="عميد أح"> عميدأح</option>
-                    <option value="عميد"> عميد</option>
-                    <option value="عقيد أح"> عقيد أح</option>
-                    <option value="عقيد"> عقيد</option>
-                    <option value="مقدم أح"> مقدم أح</option>
-                    <option value="مقدم"> مقدم</option>
-                    <option value="رائد أح"> رائد أح</option>
-                    <option value="رائد"> رائد</option>
-                    <option value="نقيب"> نقيب</option>
-                    <option value="ملازم أ"> ملازم أ</option>
-                    <option value="ملازم">ملازم </option>
+                <select name="degree_id" required>
+                    @foreach ($degrees as $degree)
+                        <option value="{{ $degree->id }}"> {{ $degree->name }}</option>
+                    @endforeach
                 </select>
                 <label> الأسم </label>
                 <input type="text" name="name" id="officer-name" placeholder="أدخل أسم الضابط" required/>
+                <br />
+                <label> الوحدة </label>
                 <select name="kateba_id" required>
                     <option value="1"> قيال 21</option>
                     @foreach ($kataebs as $kataeb)
@@ -75,7 +67,9 @@
                 </select>
                 <label> تاريخ الأنضمام</label>
                 <input type="date" name="join_at" id="join_at" required/>
+                <label> الوظيفة  </label>
                 <input type="text" name="job" id="officer-job" placeholder="الوظيفة" required />
+                <label> التخصص </label>
                 <input type="text" name="specialist" id="officer-specialist" placeholder="التخصص" required/>
                 <br />
                 <label>  الفئة </label>
@@ -100,20 +94,31 @@
                 </select>
                 <label>  تاريخ الميلاد </label>
                 <input type="date" name="birthdate" id="officer-birthdate" />
+                <br />
+                <label>  الطول </label>
+                <input type="text" name="hight" id="officer-hight"  placeholder="الطول" required/>
+                <label>الوزن </label>
+                <input type="text" name="weight" id="officer-weight"  placeholder="الوزن" required/>
+                <label> تليفون 1</label>
+                <input type="text" name="phone1" id="officer-phone1"  placeholder="تليفون 1" required/>
+                <label> تليفون 2</label>
+                <input type="text" name="phone2" id="officer-phone2"  placeholder="تليفون 2"/>
+                <br />
+                <label>  العنوان </label>
+                <input type="text" name="street" id="officer-street" placeholder="شارع"/>
+                <input type="text" name="village" id="officer-village"  placeholder="قرية"/>
+                <input type="text" name="country" id="officer-country"  placeholder="مدينة"/>
+                <input type="text" name="goverment" id="officer-goverment"  placeholder="محافظة"/>
+                <br />
+                <label>  الكلية </label>
                 <select  name="university" id="officer-university" required >
                     <option value="حربية">حربية </option>
                     <option value="فنية عسكرية">فنية عسكرية </option>
                     <option value="د جو"> د جو</option>
                     <option value="معهد الفني"> معهد الفني</option>
+                    <option value="كلية الضباط الإحتياط">كلية الضباط الإحتياط</option>
                 </select>
-                <input type="text" name="street" id="officer-street" placeholder="شارع"/>
-                <input type="text" name="village" id="officer-village"  placeholder="قرية"/>
-                <input type="text" name="country" id="officer-country"  placeholder="مدينة"/>
-                <input type="text" name="goverment" id="officer-goverment"  placeholder="محافظة"/>
-                <input type="text" name="hight" id="officer-hight"  placeholder="الطول" required/>
-                <input type="text" name="weight" id="officer-weight"  placeholder="الوزن" required/>
-                <input type="text" name="phone1" id="officer-phone1"  placeholder="تليفون 1" required/>
-                <input type="text" name="phone2" id="officer-phone2"  placeholder="تليفون 2"/>
+                <label> ملاحظات</label>
                 <input type="text" name="notes" id="officer-notes"  placeholder="ملاحظات"/>
                 <br />
     

@@ -301,7 +301,7 @@
             @endif
             <tr>
                 <td>{{ Numbers::ShowInArabicDigits($index + 1) }} </td>
-                <td>{{ $officer->degree }} </td>
+                <td>{{ $officer->degree->name }} </td>
                 <td>{{ Numbers::ShowInArabicDigits($officer->militray_id) }} </td>
                 <td>{{ Numbers::ShowInArabicDigits($officer->old_id) }} </td>
                 <td>{{ $officer->name }} </td>

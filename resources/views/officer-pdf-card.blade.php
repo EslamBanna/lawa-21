@@ -94,7 +94,7 @@
                         الوحدة:
                     </span> </td>
                     <td><span>الأسم: {{ $officer->name }}</span></td>
-                    <td><span>الرتبة: {{ $officer->degree }}</span></td>
+                    <td><span>الرتبة: {{ $officer->degree->name }}</span></td>
                     <td><span>رقم الأقدمية: {{ $officer->old_id }}</span></td>
                     <td><span>الرقم العسكري: {{ $officer->militray_id }}</span></td>
                 </tr>

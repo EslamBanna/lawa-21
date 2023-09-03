@@ -30,7 +30,9 @@ class SoliderController extends Controller
         if ($request->gun_id != '') {
             $filter['gun_id'] = $request->gun_id;
         }
-        $filteration = Solider::with(['kateba', 'Gun'])->where($filter)->get();
+        $filteration = Solider::with(['kateba', 'Gun'])
+        ->orderBy('kateba_id')
+        ->where($filter)->get();
         $kataebs  = Kataeb::get();
         $guns = Guns::get();
         return view('soliders-database')->with(['kataebs' => $kataebs, 'guns' => $guns, 'officers' => $filteration]);
@@ -39,7 +41,9 @@ class SoliderController extends Controller
     {
         $filteration = '';
         if ($request->officer_name != null) {
-            $filteration = Solider::with(['kateba', 'Gun'])->where('name', 'like', '%' . $request->officer_name . '%')->get();
+            $filteration = Solider::with(['kateba', 'Gun'])->where('name', 'like', '%' . $request->officer_name . '%')
+            ->orderBy('kateba_id')
+            ->get();
         }
         if ($request->militray_id != null) {
             $filteration = Solider::with(['kateba', 'Gun'])->where('militray_id', 'like', '%' . $request->militray_id. '%')->get();

@@ -47,14 +47,14 @@
                 <input type="text" name="militray_id" id="militray_id" placeholder="أدخل الرقم العسكري"
                     value="{{ $officer->militray_id }}" required />
                 <label> الدرجة </label>
-                <select name="degree" required>
-                    <option value="{{ $officer->degree }}"> {{ $officer->degree }}</option>
-                    <option value="مساعد أ">مساعد أ</option>
-                    <option value="مساعد">مساعد</option>
-                    <option value="رقيب أ">رقيب أ</option>
-                    <option value="رقيب">رقيب</option>
-                    <option value="عريف">عريف</option>
-                    <option value="طالب">طالب</option>
+                <select name="degree_id" required>
+                    @foreach ($degrees as $degree)
+                        @if ($degree->id == $officer->degree_id)
+                            <option value="{{ $degree->id }}" selected> {{ $degree->name }}</option>
+                        @endif
+                        @continue($degree->id == $officer->degree_id)
+                        <option value="{{ $degree->id }}"> {{ $degree->name }}</option>
+                    @endforeach
                 </select>
                 <label> الأسم </label>
                 <input type="text" name="name" id="officer-name" placeholder=" أسم الضابط"

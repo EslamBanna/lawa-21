@@ -63,7 +63,7 @@
             <input type="text" name="old_id" id="old_id" value="{{ Numbers::ShowInArabicDigits($officer->old_id) }}"
                 disabled />
             <label> الرتبة </label>
-            <input type="text" name="degree" id="degree" value="{{ $officer->degree }}" disabled />
+            <input type="text" name="degree" id="degree" value="{{ $officer->degree->name }}" disabled />
 
             <label> الأسم </label>
             <input type="text" name="name" id="officer-name" value="{{ $officer->name }}" disabled />

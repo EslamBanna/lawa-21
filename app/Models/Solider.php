@@ -16,6 +16,7 @@ class Solider extends Model
         'years_of_services',
         'kateba_id',
         'join_at',
+        'left_in',
         'certification',
         'specialist',
         'gun_id',
