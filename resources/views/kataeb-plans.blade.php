@@ -84,8 +84,10 @@
 <div id="plans">
     <h1 style="text-align: center">إلتزامات الكتائب</h1>
     <div style="text-align: center">
-        <a href="{{ url('/') }}">
-            <button id="download-btn">تنزيل PDF </button>
+        <form action="{{ url('/download-plans-kataeb') }}" method="POST">
+            @csrf
+            <input type="hidden" value="{{ json_encode($data) }}" name="data">
+            <button id="download-btn" type="submit">تنزيل PDF </button>
         </a>
     </div>
     <table>
@@ -106,7 +108,7 @@
 
         @foreach ($data[0] as $index => $plan_lawa)
             <tr>
-                <td colspan="1"> {{ $index }} </td>
+                <td colspan="1"> {{ Numbers::ShowInArabicDigits(++$index) }} </td>
                 <td colspan="1"> {{ $plan_lawa->plan->type_of_plan ?? '' }} </td>
                 <td colspan="1">
                     @if (isset($plan_lawa->plan->type_of_plan) && $plan_lawa->plan->type_of_plan == 'مخطط مرور القائد')
@@ -114,14 +116,14 @@
                     @else
                     {!! $plan_lawa->plan->subject ?? '' !!} </td>
                     @endif
-                <td colspan="1"> {{ $plan_lawa->plan->start_plan ?? '' }} </td>
-                <td colspan="1"> {{ $plan_lawa->plan->end_plan ?? '' }} </td>
+                <td colspan="1"> {{ Numbers::ShowInArabicDigits($plan_lawa->plan->start_plan) ?? '' }} </td>
+                <td colspan="1"> {{ Numbers::ShowInArabicDigits($plan_lawa->plan->end_plan) ?? '' }} </td>
                 <td colspan="1"> {{ $plan_lawa->plan->notes ?? '' }} </td>
                 <td colspan="1">
                     @isset($plan_lawa->plan->attachments)
                         @foreach ($plan_lawa->plan->attachments as $index => $attach)
-                            <a href="{{ $attach->attach }}" target="_blank">مرفق {{ $index }} </a>
-                            <br />
+                        <a href="{{ $attach->attach }}" target="_blank"> مرفق {{ Numbers::ShowInArabicDigits(++$index) }} </a>
+                        <br />
                         @endforeach
                     @endisset
 
@@ -142,17 +144,17 @@
         </thead>
         @foreach ($data[2] as $index => $plan_lawa)
             <tr>
-                <td colspan="1"> {{ $index }} </td>
+                <td colspan="1"> {{ Numbers::ShowInArabicDigits(++$index) }} </td>
                 <td colspan="1"> {{ $plan_lawa->plan->type_of_plan ?? '' }} </td>
                 <td colspan="1"> {!! $plan_lawa->plan->subject ?? '' !!} </td>
-                <td colspan="1"> {{ $plan_lawa->plan->start_plan ?? '' }} </td>
-                <td colspan="1"> {{ $plan_lawa->plan->end_plan ?? '' }} </td>
+                <td colspan="1"> {{ Numbers::ShowInArabicDigits($plan_lawa->plan->start_plan) ?? '' }} </td>
+                <td colspan="1"> {{ Numbers::ShowInArabicDigits($plan_lawa->plan->end_plan) ?? '' }} </td>
                 <td colspan="1"> {{ $plan_lawa->plan->notes ?? '' }} </td>
                 <td colspan="1">
                     @isset($plan_lawa->plan->attachments)
                         @foreach ($plan_lawa->plan->attachments as $index => $attach)
-                            <a href="{{ $attach->attach }}" target="_blank">مرفق {{ $index }} </a>
-                            <br />
+                        <a href="{{ $attach->attach }}" target="_blank"> مرفق {{ Numbers::ShowInArabicDigits(++$index) }} </a>
+                        <br />
                         @endforeach
                     @endisset
 
@@ -174,17 +176,17 @@
         </thead>
         @foreach ($data[1] as $index => $plan_lawa)
             <tr>
-                <td colspan="1"> {{ $index }} </td>
+                <td colspan="1"> {{ Numbers::ShowInArabicDigits(++$index) }} </td>
                 <td colspan="1"> {{ $plan_lawa->plan->type_of_plan ?? '' }} </td>
                 <td colspan="1"> {!! $plan_lawa->plan->subject ?? '' !!} </td>
-                <td colspan="1"> {{ $plan_lawa->plan->start_plan ?? '' }} </td>
-                <td colspan="1"> {{ $plan_lawa->plan->end_plan ?? '' }} </td>
+                <td colspan="1"> {{ Numbers::ShowInArabicDigits($plan_lawa->plan->start_plan) ?? '' }} </td>
+                <td colspan="1"> {{ Numbers::ShowInArabicDigits($plan_lawa->plan->end_plan) ?? '' }} </td>
                 <td colspan="1"> {{ $plan_lawa->plan->notes ?? '' }} </td>
                 <td colspan="1">
                     @isset($plan_lawa->plan->attachments)
                         @foreach ($plan_lawa->plan->attachments as $index => $attach)
-                            <a href="{{ $attach->attach }}" target="_blank"> مرفق{{ $index }} </a>
-                            <br />
+                        <a href="{{ $attach->attach }}" target="_blank"> مرفق {{ Numbers::ShowInArabicDigits(++$index) }} </a>
+                        <br />
                         @endforeach
                     @endisset
 
@@ -206,17 +208,17 @@
         </thead>
         @foreach ($data[3] as $index => $plan_lawa)
             <tr>
-                <td colspan="1"> {{ $index }} </td>
+                <td colspan="1"> {{ Numbers::ShowInArabicDigits(++$index) }} </td>
                 <td colspan="1"> {{ $plan_lawa->plan->type_of_plan ?? '' }} </td>
                 <td colspan="1"> {!! $plan_lawa->plan->subject ?? '' !!} </td>
-                <td colspan="1"> {{ $plan_lawa->plan->start_plan ?? '' }} </td>
-                <td colspan="1"> {{ $plan_lawa->plan->end_plan ?? '' }} </td>
+                <td colspan="1"> {{ Numbers::ShowInArabicDigits($plan_lawa->plan->start_plan) ?? '' }} </td>
+                <td colspan="1"> {{ Numbers::ShowInArabicDigits($plan_lawa->plan->end_plan) ?? '' }} </td>
                 <td colspan="1"> {{ $plan_lawa->plan->notes ?? '' }} </td>
                 <td colspan="1">
                     @isset($plan_lawa->plan->attachments)
                         @foreach ($plan_lawa->plan->attachments as $index => $attach)
-                            <a href="{{ $attach->attach }}" target="_blank">مرفق {{ $index }} </a>
-                            <br />
+                        <a href="{{ $attach->attach }}" target="_blank"> مرفق {{ Numbers::ShowInArabicDigits(++$index) }} </a>
+                        <br />
                         @endforeach
                     @endisset
 
@@ -238,17 +240,17 @@
         </thead>
         @foreach ($data[6] as $index => $plan_lawa)
             <tr>
-                <td colspan="1"> {{ $index }} </td>
+                <td colspan="1"> {{ Numbers::ShowInArabicDigits(++$index) }} </td>
                 <td colspan="1"> {{ $plan_lawa->plan->type_of_plan ?? '' }} </td>
                 <td colspan="1"> {!! $plan_lawa->plan->subject ?? '' !!} </td>
-                <td colspan="1"> {{ $plan_lawa->plan->start_plan ?? '' }} </td>
-                <td colspan="1"> {{ $plan_lawa->plan->end_plan ?? '' }} </td>
+                <td colspan="1"> {{ Numbers::ShowInArabicDigits($plan_lawa->plan->start_plan) ?? '' }} </td>
+                <td colspan="1"> {{ Numbers::ShowInArabicDigits($plan_lawa->plan->end_plan) ?? '' }} </td>
                 <td colspan="1"> {{ $plan_lawa->plan->notes ?? '' }} </td>
                 <td colspan="1">
                     @isset($plan_lawa->plan->attachments)
                         @foreach ($plan_lawa->plan->attachments as $index => $attach)
-                            <a href="{{ $attach->attach }}" target="_blank">مرفق {{ $index }} </a>
-                            <br />
+                        <a href="{{ $attach->attach }}" target="_blank"> مرفق {{ Numbers::ShowInArabicDigits(++$index) }} </a>
+                        <br />
                         @endforeach
                     @endisset
 
@@ -270,17 +272,17 @@
         </thead>
         @foreach ($data[5] as $index => $plan_lawa)
             <tr>
-                <td colspan="1"> {{ $index }} </td>
+                <td colspan="1"> {{ Numbers::ShowInArabicDigits(++$index) }} </td>
                 <td colspan="1"> {{ $plan_lawa->plan->type_of_plan ?? '' }} </td>
                 <td colspan="1"> {!! $plan_lawa->plan->subject ?? '' !!} </td>
-                <td colspan="1"> {{ $plan_lawa->plan->start_plan ?? '' }} </td>
-                <td colspan="1"> {{ $plan_lawa->plan->end_plan ?? '' }} </td>
+                <td colspan="1"> {{ Numbers::ShowInArabicDigits($plan_lawa->plan->start_plan) ?? '' }} </td>
+                <td colspan="1"> {{ Numbers::ShowInArabicDigits($plan_lawa->plan->end_plan) ?? '' }} </td>
                 <td colspan="1"> {{ $plan_lawa->plan->notes ?? '' }} </td>
                 <td colspan="1">
                     @isset($plan_lawa->plan->attachments)
                         @foreach ($plan_lawa->plan->attachments as $index => $attach)
-                            <a href="{{ $attach->attach }}" target="_blank">مرفق {{ $index }} </a>
-                            <br />
+                        <a href="{{ $attach->attach }}" target="_blank"> مرفق {{ Numbers::ShowInArabicDigits(++$index) }} </a>
+                        <br />
                         @endforeach
                     @endisset
 
@@ -302,17 +304,17 @@
         </thead>
         @foreach ($data[7] as $index => $plan_lawa)
             <tr>
-                <td colspan="1"> {{ $index }} </td>
+                <td colspan="1"> {{ Numbers::ShowInArabicDigits(++$index) }} </td>
                 <td colspan="1"> {{ $plan_lawa->plan->type_of_plan ?? '' }} </td>
                 <td colspan="1"> {!! $plan_lawa->plan->subject ?? '' !!} </td>
-                <td colspan="1"> {{ $plan_lawa->plan->start_plan ?? '' }} </td>
-                <td colspan="1"> {{ $plan_lawa->plan->end_plan ?? '' }} </td>
+                <td colspan="1"> {{ Numbers::ShowInArabicDigits($plan_lawa->plan->start_plan) ?? '' }} </td>
+                <td colspan="1"> {{ Numbers::ShowInArabicDigits($plan_lawa->plan->end_plan) ?? '' }} </td>
                 <td colspan="1"> {{ $plan_lawa->plan->notes ?? '' }} </td>
                 <td colspan="1">
                     @isset($plan_lawa->plan->attachments)
                         @foreach ($plan_lawa->plan->attachments as $index => $attach)
-                            <a href="{{ $attach->attach }}" target="_blank">مرفق {{ $index }} </a>
-                            <br />
+                        <a href="{{ $attach->attach }}" target="_blank"> مرفق {{ Numbers::ShowInArabicDigits(++$index) }} </a>
+                        <br />
                         @endforeach
                     @endisset
 
@@ -334,16 +336,16 @@
         </thead>
         @foreach ($data[4] as $index => $plan_lawa)
             <tr>
-                <td colspan="1"> {{ $index }} </td>
+                <td colspan="1"> {{ Numbers::ShowInArabicDigits(++$index) }} </td>
                 <td colspan="1"> {{ $plan_lawa->plan->type_of_plan ?? '' }} </td>
                 <td colspan="1"> {!! $plan_lawa->plan->subject ?? '' !!} </td>
-                <td colspan="1"> {{ $plan_lawa->plan->start_plan ?? '' }} </td>
-                <td colspan="1"> {{ $plan_lawa->plan->end_plan ?? '' }} </td>
+                <td colspan="1"> {{ Numbers::ShowInArabicDigits($plan_lawa->plan->start_plan) ?? '' }} </td>
+                <td colspan="1"> {{ Numbers::ShowInArabicDigits($plan_lawa->plan->end_plan) ?? '' }} </td>
                 <td colspan="1"> {{ $plan_lawa->plan->notes ?? '' }} </td>
                 <td colspan="1">
                     @isset($plan_lawa->plan->attachments)
                         @foreach ($plan_lawa->plan->attachments as $index => $attach)
-                            <a href="{{ $attach->attach }}" target="_blank"> مرفق {{ $index }} </a>
+                            <a href="{{ $attach->attach }}" target="_blank"> مرفق {{ Numbers::ShowInArabicDigits(++$index) }} </a>
                             <br />
                         @endforeach
                     @endisset

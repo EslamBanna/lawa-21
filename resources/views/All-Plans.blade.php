@@ -111,12 +111,16 @@
         </a>
     </div>
     <div id="filter">
-        <form action="{{ url('/filter-plans') }}" method="POST">
+        <form action="{{ url('/filter-plans') }}" method="POST" style="display: inline">
             @csrf
             <input type="date" name="start" id="plans_from" placeholder="بداية" required />
             إلى
             <input type="date" name="end" id="plans_to" placeholder="نهاية" />
             <button style="width:100px;" class="search-btn" type="submit"> البحث </button>
+        </form>
+        <form action="{{ url('/download-plans') }}" method="POST" style="display: inline">
+            @csrf
+            <input type="hidden" name="plans" value="{{ $plans }}" />
             <button style="width:100px;" class="download-btn" type="submit"> تنزيل PDF </button>
         </form>
     </div>
@@ -135,15 +139,15 @@
             </thead>
             @foreach ($plans as $index => $plan)
                 <tr>
-                    <td> {{++ $index }} </td>
+                    <td> {{ Numbers::ShowInArabicDigits(++$index) }} </td>
                     <td> {{ $plan->type_of_plan }} </td>
                     <td> {!! $plan->subject !!} </td>
-                    <td> {{ $plan->start_plan }} </td>
+                    <td> {{ Numbers::ShowInArabicDigits($plan->start_plan) }} </td>
                     <td>
                         @if ($plan->end_plan == null)
                             -
                         @else
-                            {{ $plan->end_plan }}
+                            {{ Numbers::ShowInArabicDigits($plan->end_plan) }}
                         @endif
                     </td>
                     <td>
@@ -153,8 +157,8 @@
                     </td>
                     <td>
                         @foreach ($plan->attachments as $index => $attachment)
-                            <a href="{{ $attachment->attach }}" target="_blank"> مرفق {{++ $index }}</a>
-                        @endforeach    
+                            <a href="{{ $attachment->attach }}" target="_blank"> مرفق {{Numbers::ShowInArabicDigits( ++$index) }}</a>
+                        @endforeach
                     </td>
                     <td>
                         @if ($plan->notes == null)

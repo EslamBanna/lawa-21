@@ -13,7 +13,7 @@ class Solider extends Model
         'militray_id',
         'degree',
         'name',
-        'years_of_services',
+        // 'years_of_services',
         'kateba_id',
         'join_at',
         'left_in',

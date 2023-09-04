@@ -4,6 +4,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\OfficerController;
 use App\Http\Controllers\PDFController;
 use App\Http\Controllers\PlanController;
+use App\Http\Controllers\SanfController;
 use App\Http\Controllers\SemiOfficerController;
 use App\Http\Controllers\SoliderController;
 use Illuminate\Support\Facades\Route;
@@ -72,10 +73,13 @@ Route::get('/update-plan/{plan_id}', [PlanController::class, 'updatePlan']);
 Route::post('/save-update-plan/{plan_id}', [PlanController::class, 'saveUpdatePlan']);
 Route::get('/delete-plan-one/{plan_id}', [PlanController::class, 'deletePlanOne']);
 Route::get('/delete-plan/{plan_id}', [PlanController::class, 'deletePlan']);
+####################### Sanf ############################################################
+Route::get('/sanfs-functions', [SanfController::class, 'sanfsFunctions']);
 ####################### Export PDF ######################################################
 Route::post('/export-officers', [PDFController::class, 'exportPdf']);
 Route::post('/export-officer-card', [PDFController::class, 'exportPdfCard']);
-
+Route::post('/download-plans', [PDFController::class, 'exportPlans']);
+Route::post('/download-plans-kataeb', [PDFController::class, 'exportPlansKataeb']);
 
 
 Route::get('create-pdf-file', [PDFController::class, 'index']);

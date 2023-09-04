@@ -86,17 +86,14 @@
             <label> تاريخ الأنضمام</label>
             <input type="text" name="join_at" id="join_at" value="{{ Numbers::ShowInArabicDigits($officer->join_at) }}"
                 disabled />
+            <label> تاريخ التسريح</label>
+            <input type="text" name="left_in" id="left_in" value="{{ Numbers::ShowInArabicDigits($officer->left_in) }}"
+                disabled />
             <label> المؤهل الدراسي</label>
             <input type="text" name="certification" id="officer-job" value="{{ $officer->certification }}" disabled />
             <label> التخصص بالوحدة</label>
             <input type="text" name="specialist" id="officer-specialist" value="{{ $officer->specialist }}" disabled />
-            <label> السلاح </label>
-            <input type="text" name="gun_id" id="gun_id" value="{{ $officer->gun->gun_name }}" disabled />
-
             <br />
-            <label> تاريخ الميلاد </label>
-            <input type="text" name="birthdate" id="officer-birthdate"
-                value="{{ Numbers::ShowInArabicDigits($officer->birthdate) }}" disabled />
             <label> شارع</label>
             <input type="text" name="street" id="officer-street"
                 value="{{ Numbers::ShowInArabicDigits($officer->street) }}" disabled />
@@ -104,9 +101,11 @@
             <input type="text" name="village" id="officer-village" value="{{ $officer->village }}" disabled />
             <label>مدينة </label>
             <input type="text" name="country" id="officer-country" value="{{ $officer->country }}" disabled />
-            <br />
             <label> محافظة</label>
             <input type="text" name="goverment" id="officer-goverment" value="{{ $officer->goverment }}" disabled />
+            <br />
+            <label> السلاح </label>
+            <input type="text" name="gun_id" id="gun_id" value="{{ $officer->gun->gun_name }}" disabled />
             <label> الطول</label>
             <input type="text" name="hight" id="officer-hight"
                 value="{{ Numbers::ShowInArabicDigits($officer->hight) }}" disabled />
@@ -121,10 +120,17 @@
             <label> تليفون 2</label>
             <input type="text" name="phone2" id="officer-phone2"
                 value="{{ Numbers::ShowInArabicDigits($officer->phone2) }}" disabled />
+            <label> تاريخ الميلاد </label>
+            <input type="text" name="birthdate" id="officer-birthdate"
+                value="{{ Numbers::ShowInArabicDigits($officer->birthdate) }}" disabled />
             <label> ملاحظات</label>
             <input type="text" name="notes" id="officer-notes" value="{{ $officer->notes }}" disabled />
             <br />
-            <button class="download">تنزيل PDF </button>
+            <form action="{{ url('/export-officer-card') }}" method="POST">
+                @csrf
+                <input type="hidden" name="solider" value="{{ $officer }}">
+                <button class="download" type="submit">تنزيل PDF </button>
+            </form>
             <br />
             @if ($officer->image != null)
                 <label> الصورة الشخصية</label>

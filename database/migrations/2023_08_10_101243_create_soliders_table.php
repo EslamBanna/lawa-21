@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('name');
             $table->integer('kateba_id');
             // $table->foreignId('belongs_to')->constrained('Kataebs')->onDelete('cascade');
-            $table->enum('years_of_services',['1', '1.5', '2' , '2.5', '3'])->default('1');
+            // $table->enum('years_of_services',['1', '1.5', '2' , '2.5', '3'])->default('1');
             $table->string('join_at')->nullable();
             $table->string('left_in')->nullable();
             $table->string('specialist');

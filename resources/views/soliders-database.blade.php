@@ -194,6 +194,7 @@
                 <th rowspan="2">الأسم</th>
                 <th rowspan="2">الوحدة</th>
                 <th rowspan="2">تاريخ الضم</th>
+                <th rowspan="2">تاريخ التسريح</th>
                 <th rowspan="2">المؤهل</th>
                 <th rowspan="2">التخصص بالوحدة</th>
                 <th rowspan="2">السلاح</th>
@@ -239,6 +240,7 @@
                         <th rowspan="2">الأسم</th>
                         <th rowspan="2">الوحدة</th>
                         <th rowspan="2">تاريخ الضم</th>
+                        <th rowspan="2">تاريخ التسريح</th>
                         <th rowspan="2">المؤهل</th>
                         <th rowspan="2">التخصص بالوحدة</th>
                         <th rowspan="2">السلاح</th>
@@ -275,6 +277,7 @@
                     @endif
                 </td>
                 <td>{{ Numbers::ShowInArabicDigits($officer->join_at) }} </td>
+                <td>{{ Numbers::ShowInArabicDigits($officer->left_in) }} </td>
                 <td>{{ $officer->certification }} </td>
                 <td>{{ $officer->specialist }} </td>
                 <td>{{ $officer->Gun->gun_name }} </td>

@@ -30,7 +30,7 @@
         </div>
         @foreach ($traffics as $traffic)
             <a href="{{ url('/show-weekly-traffic/' . $traffic->id) }}">
-                <button class="traffic">من{{ $traffic->start_plan }} إلي {{ $traffic->end_plan }} </button>
+                <button class="traffic">من{{ Numbers::ShowInArabicDigits($traffic->start_plan) }} إلي {{ Numbers::ShowInArabicDigits($traffic->end_plan) }} </button>
             </a>
         @endforeach
     </div>

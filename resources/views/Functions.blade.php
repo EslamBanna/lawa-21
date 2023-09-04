@@ -33,5 +33,8 @@
         <a href="{{ url('/plans-functions') }}">
             <button class="function-button">الألتزامات</button>
         </a>
+        <a href="{{ url('/sanfs-functions') }}">
+            <button class="function-button">حسابات الصنف</button>
+        </a>
     </div>
 @stop

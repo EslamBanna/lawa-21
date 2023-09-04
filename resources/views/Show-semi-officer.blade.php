@@ -89,9 +89,11 @@
             <input type="text" name="join_at" id="join_at" value="{{ Numbers::ShowInArabicDigits($officer->join_at) }}"
                 disabled />
             <label> الوظيفة</label>
-            <input type="text" name="job" id="officer-job" value="{{ Numbers::ShowInArabicDigits($officer->job) }}" disabled />
+            <input type="text" name="job" id="officer-job" value="{{ Numbers::ShowInArabicDigits($officer->job) }}"
+                disabled />
             <label> التخصص</label>
-            <input type="text" name="specialist" id="officer-specialist" value="{{ Numbers::ShowInArabicDigits($officer->specialist) }}" disabled />
+            <input type="text" name="specialist" id="officer-specialist"
+                value="{{ Numbers::ShowInArabicDigits($officer->specialist) }}" disabled />
             <label> السلاح </label>
             <input type="text" name="gun_id" id="officer-specialist" value="{{ $officer->gun->gun_name }}" disabled />
             <br />
@@ -128,7 +130,11 @@
             <label> ملاحظات</label>
             <input type="text" name="notes" id="officer-notes" value="{{ $officer->notes }}" disabled />
             <br />
-            <button class="download">تنزيل PDF </button>
+            <form action="{{ url('/export-officer-card') }}" method="POST">
+                @csrf
+                <input type="hidden" name="semi_officer" value="{{ $officer }}">
+                <button class="download" type="submit">تنزيل PDF </button>
+            </form>
             <br />
             @if ($officer->image != null)
                 <label> الصورة الشخصية</label>

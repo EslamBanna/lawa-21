@@ -20,17 +20,8 @@
 @extends('layouts.general-layout')
 @section('content')
     <div class="buttons" style="direction: rtl">
-        <a href="{{ url('/get-plans') }}">
-            <button class="function-button">عرض جميع الإلتزامات</button>
-        </a>
-        <a href="{{ url('/add-plan-page') }}">
-            <button class="function-button">اضافة</button>
-        </a>
-        <a href="{{ url('/weekly-traffic-functions') }}">
-            <button class="function-button">مخطط مرور القائد</button>
-        </a>
-        <a href="{{ url('/kataep-plans') }}">
-            <button class="function-button">التزامات الكتائب</button>
+        <a href="{{ url('/') }}">
+            <button class="function-button">عرض</button>
         </a>
     </div>
 @stop
