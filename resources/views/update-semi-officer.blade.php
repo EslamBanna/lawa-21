@@ -35,8 +35,8 @@
 @section('content')
     <div id="add-officer">
         <div id="intro" style="text-align: center">
-            <h1>  تعديل بيانات ضابط صف</h1>
-            <a href="{{ url('/') }}">   
+            <h1> تعديل بيانات ضابط صف</h1>
+            <a href="{{ url('/') }}">
                 <button> &LeftArrow; العودة الي الصفحة الرئيسية </button>
             </a>
         </div>
@@ -49,6 +49,9 @@
                 <label> الدرجة </label>
                 <select name="degree_id" required>
                     @foreach ($degrees as $degree)
+                        @if ($degree->id < 14)
+                            @continue
+                        @endif
                         @if ($degree->id == $officer->degree_id)
                             <option value="{{ $degree->id }}" selected> {{ $degree->name }}</option>
                         @endif
@@ -58,8 +61,8 @@
                 </select>
                 <label> الأسم </label>
                 <input type="text" name="name" id="officer-name" placeholder=" أسم الضابط"
-                    value="{{ $officer->name }}" required/>
-               
+                    value="{{ $officer->name }}" required />
+
                 <label> الوحدة</label>
                 <select name="kateba_id" required>
                     @if ($officer->kateba->katepa_name == 21)
@@ -83,10 +86,11 @@
                 <label> تاريخ الأنضمام</label>
                 <input type="date" name="join_at" id="join_at" value="{{ $officer->join_at }}" required />
                 <label> الوظيفة</label>
-                <input type="text" name="job" id="officer-job" value="{{ $officer->job }}" placeholder="الوظيفة" required />
+                <input type="text" name="job" id="officer-job" value="{{ $officer->job }}" placeholder="الوظيفة"
+                    required />
                 <label> التخصص</label>
                 <input type="text" name="specialist" id="officer-specialist" placeholder="التخصص"
-                    value="{{ $officer->specialist }}" required/>
+                    value="{{ $officer->specialist }}" required />
                 <label> السلاح </label>
                 <select name="gun_id" id="gun" required>
                     <option value="{{ $officer->gun_id }}">{{ $officer->gun->gun_name }} </option>
@@ -109,8 +113,8 @@
                 <label>قرية </label>
                 <input type="text" name="village" id="officer-village" placeholder="قرية"
                     value="{{ $officer->village }}" />
-                    <br />
-                    <label>مدينة </label>
+                <br />
+                <label>مدينة </label>
                 <input type="text" name="country" id="officer-country" placeholder="مدينة"
                     value="{{ $officer->country }}" />
                 <label> محافظة</label>
@@ -119,10 +123,10 @@
                 <label> الطول</label>
                 <input type="text" name="hight" id="officer-hight" placeholder="الطول"
                     value="{{ $officer->hight }}" />
-                    <label>الوزن </label>
+                <label>الوزن </label>
                 <input type="text" name="weight" id="officer-weight" placeholder="الوزن"
                     value="{{ $officer->weight }}" />
-                    <br />
+                <br />
                 <label> تليفون 1</label>
                 <input type="text" name="phone1" id="officer-phone1" placeholder="تليفون 1"
                     value="{{ $officer->phone1 }}" required />
