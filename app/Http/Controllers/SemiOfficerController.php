@@ -15,57 +15,73 @@ class SemiOfficerController extends Controller
     use GeneralTrait;
     public function semiOfficerDatabase()
     {
-        $kataebs  = Kataeb::get();
-        $guns = Guns::get();
-        $officers = SemiOfficer::with(['kateba', 'Gun', 'degree'])
-            ->orderBy('kateba_id')
-            ->orderBy('degree_id')
-            ->get();
-        return view('semi-officer-database')->with(['kataebs' => $kataebs, 'guns' => $guns, 'officers' => $officers]);
-    }
-    public function filterSemiOfficers(Request $request)
-    {
-        $filter = [];
-        if ($request->kateaba != '') {
-            $filter['kateba_id'] = $request->kateaba;
-        }
-        if ($request->gun_id != '') {
-            $filter['gun_id'] = $request->gun_id;
-        }
-        if ($request->gun_number != '') {
-            $filter['gun_number'] = $request->gun_number;
-        }
-        $filteration = SemiOfficer::with(['kateba', 'Gun', 'degree'])
-            ->orderBy('kateba_id')
-            ->orderBy('degree_id')
-            ->where($filter)->get();
-        $kataebs  = Kataeb::get();
-        $guns = Guns::get();
-        return view('semi-officer-database')->with(['kataebs' => $kataebs, 'guns' => $guns, 'officers' => $filteration]);
-    }
-    public function getSemiOfficer(Request $request)
-    {
-        $filteration = '';
-        if ($request->officer_name != null) {
-            $filteration = SemiOfficer::with(['kateba', 'Gun', 'degree'])->where('name', 'like', '%' . $request->officer_name . '%')
+        try {
+            $kataebs  = Kataeb::get();
+            $guns = Guns::get();
+            $officers = SemiOfficer::with(['kateba', 'Gun', 'degree'])
                 ->orderBy('kateba_id')
                 ->orderBy('degree_id')
                 ->get();
+            return view('semi-officer-database')->with(['kataebs' => $kataebs, 'guns' => $guns, 'officers' => $officers]);
+        } catch (\Exception $ex) {
+            return $ex->getMessage();
         }
-        if ($request->militray_id != null) {
-            $filteration = SemiOfficer::with(['kateba', 'Gun', 'degree'])->where('militray_id', 'like', '%' . $request->militray_id . '%')->get();
+    }
+    public function filterSemiOfficers(Request $request)
+    {
+        try {
+            $filter = [];
+            if ($request->kateaba != '') {
+                $filter['kateba_id'] = $request->kateaba;
+            }
+            if ($request->gun_id != '') {
+                $filter['gun_id'] = $request->gun_id;
+            }
+            if ($request->gun_number != '') {
+                $filter['gun_number'] = $request->gun_number;
+            }
+            $filteration = SemiOfficer::with(['kateba', 'Gun', 'degree'])
+                ->orderBy('kateba_id')
+                ->orderBy('degree_id')
+                ->where($filter)->get();
+            $kataebs  = Kataeb::get();
+            $guns = Guns::get();
+            return view('semi-officer-database')->with(['kataebs' => $kataebs, 'guns' => $guns, 'officers' => $filteration]);
+        } catch (\Exception $ex) {
+            return $ex->getMessage();
         }
-        $kataebs  = Kataeb::get();
-        $guns = Guns::get();
-        return view('semi-officer-database')->with(['kataebs' => $kataebs, 'guns' => $guns, 'officers' => $filteration]);
+    }
+    public function getSemiOfficer(Request $request)
+    {
+        try {
+            $filteration = '';
+            if ($request->officer_name != null) {
+                $filteration = SemiOfficer::with(['kateba', 'Gun', 'degree'])->where('name', 'like', '%' . $request->officer_name . '%')
+                    ->orderBy('kateba_id')
+                    ->orderBy('degree_id')
+                    ->get();
+            }
+            if ($request->militray_id != null) {
+                $filteration = SemiOfficer::with(['kateba', 'Gun', 'degree'])->where('militray_id', 'like', '%' . $request->militray_id . '%')->get();
+            }
+            $kataebs  = Kataeb::get();
+            $guns = Guns::get();
+            return view('semi-officer-database')->with(['kataebs' => $kataebs, 'guns' => $guns, 'officers' => $filteration]);
+        } catch (\Exception $ex) {
+            return $ex->getMessage();
+        }
     }
 
     public function addNewSemiOfficer()
     {
-        $kataebs  = Kataeb::get();
-        $guns = Guns::get();
-        $degrees = Degree::get();
-        return view('Add-new-semi-officer')->with(['kataebs' => $kataebs, 'guns' => $guns, 'degrees' => $degrees]);
+        try {
+            $kataebs  = Kataeb::get();
+            $guns = Guns::get();
+            $degrees = Degree::get();
+            return view('Add-new-semi-officer')->with(['kataebs' => $kataebs, 'guns' => $guns, 'degrees' => $degrees]);
+        } catch (\Exception $ex) {
+            return $ex->getMessage();
+        }
     }
 
     public function addSemiOfficer(Request $request)
@@ -100,30 +116,46 @@ class SemiOfficerController extends Controller
 
     public function showSemiOfficer($officer_id)
     {
-        $officer = SemiOfficer::with('Gun', 'degree')->find($officer_id);
-        return view('Show-semi-officer')->with(['officer' => $officer]);
+        try {
+            $officer = SemiOfficer::with('Gun', 'degree')->find($officer_id);
+            return view('Show-semi-officer')->with(['officer' => $officer]);
+        } catch (\Exception $ex) {
+            return $ex->getMessage();
+        }
     }
 
     public function updateSemiOfficer($officer_id)
     {
-        $kataebs  = Kataeb::get();
-        $guns = Guns::get();
-        $degrees = Degree::get();
-        $officer = SemiOfficer::with('Gun')->find($officer_id);
-        return view('update-semi-officer')->with(['officer' => $officer, 'kataebs' => $kataebs, 'guns' => $guns, 'degrees' => $degrees]);
+        try {
+            $kataebs  = Kataeb::get();
+            $guns = Guns::get();
+            $degrees = Degree::get();
+            $officer = SemiOfficer::with('Gun')->find($officer_id);
+            return view('update-semi-officer')->with(['officer' => $officer, 'kataebs' => $kataebs, 'guns' => $guns, 'degrees' => $degrees]);
+        } catch (\Exception $ex) {
+            return $ex->getMessage();
+        }
     }
 
     public function updateSemiOfficerData(Request $request, $officer_id)
     {
-        $officer = SemiOfficer::find($officer_id);
-        $officer->update($request->except('_token'));
-        return redirect()->to('/semi-officer-database');
+        try {
+            $officer = SemiOfficer::find($officer_id);
+            $officer->update($request->except('_token'));
+            return redirect()->to('/semi-officer-database');
+        } catch (\Exception $ex) {
+            return $ex->getMessage();
+        }
     }
 
     public function deleteSemiOfficer($officer_id)
     {
-        $officer = SemiOfficer::find($officer_id);
-        $officer->delete();
-        return redirect()->to('/semi-officer-database');
+        try {
+            $officer = SemiOfficer::find($officer_id);
+            $officer->delete();
+            return redirect()->to('/semi-officer-database');
+        } catch (\Exception $ex) {
+            return $ex->getMessage();
+        }
     }
 }
