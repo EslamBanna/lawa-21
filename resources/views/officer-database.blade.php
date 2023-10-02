@@ -165,6 +165,16 @@
                         <option value="احتياط">احتياط</option>
                     </select>
                 </div>
+                <div id="officer_typee" class="filtartion-class">
+                    <label> أختر الكلية  </label>
+                    <select name="university" id="officer_university" required>
+                        <option value="حربية">حربية </option>
+                        <option value="فنية عسكرية">فنية عسكرية </option>
+                        <option value="د جو"> د جو</option>
+                        <option value="معهد الفني"> معهد الفني</option>
+                        <option value="كلية الضباط الإحتياط">كلية الضباط الإحتياط</option>
+                    </select>
+                </div>
                 <br />
                 <br />
                 <button style="width:100px;" class="search-btn" type="submit"> البحث </button>
@@ -356,6 +366,7 @@
             document.getElementById('gun').value = '';
             document.getElementById('gun_number').value = '';
             document.getElementById('officer_type').value = '';
+            document.getElementById('officer_university').value = '';
         }
     </script>
 </div>

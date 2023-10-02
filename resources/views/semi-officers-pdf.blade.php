@@ -47,39 +47,51 @@
         <table>
             <thead>
                 <tr>
-                    <th rowspan="2">م</th>
-                    <th rowspan="2" style="min-width: 30px">درجة</th>
-                    <th rowspan="2">الرقم العسكري</th>
-                    <th rowspan="2" style="width: 150px">الأسم</th>
-                    <th rowspan="2">الوحدة</th>
-                    <th rowspan="2">تاريخ الضم</th>
-                    <th rowspan="2">الوظيفة</th>
-                    <th rowspan="2">التخصص</th>
-                    <th rowspan="2">السلاح</th>
-                    <th rowspan="2">رقم الدفعة</th>
-                    <th rowspan="2">تاريخ الميلاد</th>
-                    <th rowspan="1" colspan="4"> العنوان</th>
-                    <th rowspan="2">طول</th>
-                    <th rowspan="2">وزن</th>
-                    <th rowspan="2">تليفون 1</th>
-                    <th rowspan="2">تليفون 2</th>
                     <th rowspan="2">الملاحظات</th>
+                    <th rowspan="2">تليفون 2</th>
+                    <th rowspan="2">تليفون 1</th>
+                    <th rowspan="2">وزن</th>
+                    <th rowspan="2">طول</th>
+                    <th rowspan="1" colspan="4"> العنوان</th>
+                    <th rowspan="2">تاريخ الميلاد</th>
+                    <th rowspan="2">رقم الدفعة</th>
+                    <th rowspan="2">السلاح</th>
+                    <th rowspan="2">التخصص</th>
+                    <th rowspan="2">الوظيفة</th>
+                    <th rowspan="2">تاريخ الضم</th>
+                    <th rowspan="2">الوحدة</th>
+                    <th rowspan="2" style="width: 150px">الأسم</th>
+                    <th rowspan="2">الرقم العسكري</th>
+                    <th rowspan="2" style="min-width: 30px">درجة</th>
+                    <th rowspan="2">م</th>
+
                 </tr>
 
                 <tr>
-                    <th colspan="1">شارع</th>
-                    <th colspan="1">قرية</th>
-                    <th colspan="1">مدينة</th>
                     <th colspan="1">محافظة</th>
+                    <th colspan="1">مدينة</th>
+                    <th colspan="1">قرية</th>
+                    <th colspan="1">شارع</th>
                 </tr>
 
             </thead>
             @foreach ($officers as $index=> $officer)
                 <tr>
-                    <td>{{ Str::reverse(Numbers::ShowInArabicDigits(($index+1))) }} </td>
-                    <td>{{ $officer->degree->name }} </td>
-                    <td lang="ar">{{Str::reverse( Numbers::ShowInArabicDigits($officer->militray_id)) }} </td>
-                    <td>{{ $officer->name }} </td>
+                    <td>{{ Numbers::ShowInArabicDigits($officer->notes) }} </td>
+                    <td>{{ Str::reverse(Numbers::ShowInArabicDigits($officer->phone2) )}} </td>
+                    <td>{{ Str::reverse(Numbers::ShowInArabicDigits($officer->phone1)) }} </td>
+                    <td>{{ Str::reverse(Numbers::ShowInArabicDigits($officer->weight)) }} </td>
+                    <td>{{Str::reverse(Numbers::ShowInArabicDigits($officer->hight)) }} </td>
+                    <td>{{ $officer->goverment }} </td>
+                    <td>{{ $officer->country }} </td>
+                    <td>{{ $officer->village }} </td>
+                    <td>{{ Numbers::ShowInArabicDigits($officer->street) }} </td>
+                    <td>{{ Numbers::ShowInArabicDigits($officer->birthdate) }} </td>
+                    <td>{{ Str::reverse(Numbers::ShowInArabicDigits($officer->gun_number)) }} </td>
+                    <td>{{ $officer->gun->gun_name }} </td>
+                    <td>{{ Numbers::ShowInArabicDigits($officer->specialist) }} </td>
+                    <td>{{ Numbers::ShowInArabicDigits($officer->job) }} </td>
+                    <td>{{Str::reverse( Numbers::ShowInArabicDigits($officer->join_at)) }} </td>
                     <td>
                         @if ($officer->kateba_id == 1)
                             قيال {{Str::reverse( $officer->kateba->katepa_name) }}
@@ -89,21 +101,10 @@
 
 
                     </td>
-                    <td>{{Str::reverse( Numbers::ShowInArabicDigits($officer->join_at)) }} </td>
-                    <td>{{ Numbers::ShowInArabicDigits($officer->job) }} </td>
-                    <td>{{ Numbers::ShowInArabicDigits($officer->specialist) }} </td>
-                    <td>{{ $officer->gun->gun_name }} </td>
-                    <td>{{ Str::reverse(Numbers::ShowInArabicDigits($officer->gun_number)) }} </td>
-                    <td>{{ Numbers::ShowInArabicDigits($officer->birthdate) }} </td>
-                    <td>{{ Numbers::ShowInArabicDigits($officer->street) }} </td>
-                    <td>{{ $officer->village }} </td>
-                    <td>{{ $officer->country }} </td>
-                    <td>{{ $officer->goverment }} </td>
-                    <td>{{Str::reverse(Numbers::ShowInArabicDigits($officer->hight)) }} </td>
-                    <td>{{ Str::reverse(Numbers::ShowInArabicDigits($officer->weight)) }} </td>
-                    <td>{{ Str::reverse(Numbers::ShowInArabicDigits($officer->phone1)) }} </td>
-                    <td>{{ Str::reverse(Numbers::ShowInArabicDigits($officer->phone2) )}} </td>
-                    <td>{{ Numbers::ShowInArabicDigits($officer->notes) }} </td>
+                    <td>{{ $officer->name }} </td>
+                    <td lang="ar">{{Str::reverse( Numbers::ShowInArabicDigits($officer->militray_id)) }} </td>
+                    <td>{{ $officer->degree->name }} </td>
+                    <td>{{ Str::reverse(Numbers::ShowInArabicDigits(($index+1))) }} </td>
                 </tr>
             @endforeach
         </table>

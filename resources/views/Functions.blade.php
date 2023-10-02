@@ -30,11 +30,11 @@
         <a href="{{ url('/soliders-database') }}">
             <button class="function-button">قاعدة بيانات الجنود</button>
         </a>
-        <a href="{{ url('/plans-functions') }}">
+        {{-- <a href="{{ url('/plans-functions') }}">
             <button class="function-button">الألتزامات</button>
         </a>
         <a href="{{ url('/sanfs-functions') }}">
             <button class="function-button">حسابات الصنف</button>
-        </a>
+        </a> --}}
     </div>
 @stop

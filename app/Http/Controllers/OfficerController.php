@@ -46,6 +46,9 @@ class OfficerController extends Controller
             if ($request->officer_type != '') {
                 $filter['officer_type'] = $request->officer_type;
             }
+            if ($request->university != '') {
+                $filter['university'] = $request->university;
+            }
             $filteration = Officer::with(['kateba', 'Gun', 'degree'])
                 ->orderBy('kateba_id')
                 ->orderBy('degree_id')

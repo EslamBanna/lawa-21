@@ -43,7 +43,8 @@
         top: 40%;
         transform: rotateY(180deg);
     }
-    #nesr{
+
+    #nesr {
         /* color: yellow; */
         font-size: 50px;
     }
@@ -55,7 +56,7 @@
     </div>
     <div class="content-center">
         <h1>قيادة اللواء ٢١ إنذار</h1>
-        <a href="{{ url('/functions') }}"> <button class="btn btn-success">الدخول</button> </a>
+        <a> <button class="btn btn-success" onclick="enter()">الدخول</button> </a>
     </div>
     <div id="right-akm">
         <img src="{{ asset('akm.png') }}" alt="akm" width="200" height="200" />
@@ -71,4 +72,15 @@
         &star;
         &star;
     </div>
+    <script>
+        function enter() {
+            let enterPassword = prompt('أدخل كلمة السر للدخول');
+            if(enterPassword != "21103") {
+                alert('كلمة السر خاطئة');
+                return;
+            }else{
+                window.location.href = "{{URL::to('functions')}}"
+            }
+        }
+    </script>
 @stop

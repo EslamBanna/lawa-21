@@ -73,63 +73,111 @@
             </a>
         </div>
         <div class="input">
-            <label>الرقم العسكري </label>
-            <input type="text" name="militray_id" id="militray_id"
-                value="{{ Numbers::ShowInArabicDigits($officer->militray_id) }}" disabled />
-            <label> الدرجة </label>
-            <input type="text" name="degree" id="militray_id" value="{{ $officer->degree->name }}" disabled />
-
-            <label> الأسم </label>
-            <input type="text" name="name" id="officer-name" value="{{ $officer->name }}" disabled />
-            <label> الوحدة</label>
-            <input type="text" name="kateba_id" id="militray_id" value="{{ $officer->kateba->katepa_name }}" disabled />
-
-            <br />
-            <label> تاريخ الأنضمام</label>
-            <input type="text" name="join_at" id="join_at" value="{{ Numbers::ShowInArabicDigits($officer->join_at) }}"
-                disabled />
-            <label> الوظيفة</label>
-            <input type="text" name="job" id="officer-job" value="{{ Numbers::ShowInArabicDigits($officer->job) }}"
-                disabled />
-            <label> التخصص</label>
-            <input type="text" name="specialist" id="officer-specialist"
-                value="{{ Numbers::ShowInArabicDigits($officer->specialist) }}" disabled />
-            <label> السلاح </label>
-            <input type="text" name="gun_id" id="officer-specialist" value="{{ $officer->gun->gun_name }}" disabled />
-            <br />
-            <label> رقم الدفعة </label>
-            <input type="text" name="gun_number" id="officer-specialist"
-                value="{{ Numbers::ShowInArabicDigits($officer->gun_number) }}" disabled />
-
-            <label> تاريخ الميلاد </label>
-            <input type="date" name="birthdate" id="officer-birthdate"
-                value="{{ Numbers::ShowInArabicDigits($officer->birthdate) }}" disabled />
-            <label> شارع</label>
-            <input type="text" name="street" id="officer-street"
-                value="{{ Numbers::ShowInArabicDigits($officer->street) }}" disabled />
-            <label>قرية </label>
-            <input type="text" name="village" id="officer-village" value="{{ $officer->village }}" disabled />
-            <br />
-            <label>مدينة </label>
-            <input type="text" name="country" id="officer-country" value="{{ $officer->country }}" disabled />
-            <label> محافظة</label>
-            <input type="text" name="goverment" id="officer-goverment" value="{{ $officer->goverment }}" disabled />
-            <label> الطول</label>
-            <input type="text" name="hight" id="officer-hight"
-                value="{{ Numbers::ShowInArabicDigits($officer->hight) }}" disabled />
-            <label>الوزن </label>
-            <input type="text" name="weight" id="officer-weight"
-                value="{{ Numbers::ShowInArabicDigits($officer->weight) }}" disabled />
-            <br />
-            <label> تليفون 1</label>
-            <input type="text" name="phone1" id="officer-phone1"
-                value="{{ Numbers::ShowInArabicDigits($officer->phone1) }}" disabled />
-            <label> تليفون 2</label>
-            <input type="text" name="phone2" id="officer-phone2"
-                value="{{ Numbers::ShowInArabicDigits($officer->phone2) }}" disabled />
-            <label> ملاحظات</label>
-            <input type="text" name="notes" id="officer-notes" value="{{ $officer->notes }}" disabled />
-            <br />
+            <table>
+                <tr>
+                    <td>
+                        <label>الرقم العسكري </label>
+                        <input type="text" name="militray_id" id="militray_id"
+                            value="{{ Numbers::ShowInArabicDigits($officer->militray_id) }}" disabled />
+                    </td>
+                    <td>
+                        <label> الدرجة </label>
+                        <input type="text" name="degree" id="militray_id" value="{{ $officer->degree->name }}"
+                            disabled />
+                    </td>
+                    <td>
+                        <label> الأسم </label>
+                        <input type="text" name="name" id="officer-name" value="{{ $officer->name }}" disabled />
+                    </td>
+                    <td>
+                        <label> الوحدة</label>
+                        <input type="text" name="kateba_id" id="militray_id" value="{{ $officer->kateba->katepa_name }}"
+                            disabled />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label> تاريخ الأنضمام</label>
+                        <input type="text" name="join_at" id="join_at"
+                            value="{{ Numbers::ShowInArabicDigits($officer->join_at) }}" disabled />
+                    </td>
+                    <td>
+                        <label> الوظيفة</label>
+                        <input type="text" name="job" id="officer-job"
+                            value="{{ Numbers::ShowInArabicDigits($officer->job) }}" disabled />
+                    </td>
+                    <td>
+                        <label> التخصص</label>
+                        <input type="text" name="specialist" id="officer-specialist"
+                            value="{{ Numbers::ShowInArabicDigits($officer->specialist) }}" disabled />
+                    </td>
+                    <td>
+                        <label> السلاح </label>
+                        <input type="text" name="gun_id" id="officer-specialist" value="{{ $officer->gun->gun_name }}"
+                            disabled />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label> رقم الدفعة </label>
+                        <input type="text" name="gun_number" id="officer-specialist"
+                            value="{{ Numbers::ShowInArabicDigits($officer->gun_number) }}" disabled />
+                    </td>
+                    <td>
+                        <label> تاريخ الميلاد </label>
+                        <input type="date" name="birthdate" id="officer-birthdate"
+                            value="{{ Numbers::ShowInArabicDigits($officer->birthdate) }}" disabled />
+                    </td>
+                    <td>
+                        <label> شارع</label>
+                        <input type="text" name="street" id="officer-street"
+                            value="{{ Numbers::ShowInArabicDigits($officer->street) }}" disabled />
+                    </td>
+                    <td>
+                        <label>قرية </label>
+                        <input type="text" name="village" id="officer-village" value="{{ $officer->village }}"
+                            disabled />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>مدينة </label>
+                        <input type="text" name="country" id="officer-country" value="{{ $officer->country }}"
+                            disabled />
+                    </td>
+                    <td>
+                        <label> محافظة</label>
+                        <input type="text" name="goverment" id="officer-goverment" value="{{ $officer->goverment }}"
+                            disabled />
+                    </td>
+                    <td>
+                        <label> الطول</label>
+                        <input type="text" name="hight" id="officer-hight"
+                            value="{{ Numbers::ShowInArabicDigits($officer->hight) }}" disabled />
+                    </td>
+                    <td>
+                        <label>الوزن </label>
+                        <input type="text" name="weight" id="officer-weight"
+                            value="{{ Numbers::ShowInArabicDigits($officer->weight) }}" disabled />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label> تليفون 1</label>
+                        <input type="text" name="phone1" id="officer-phone1"
+                            value="{{ Numbers::ShowInArabicDigits($officer->phone1) }}" disabled />
+                    </td>
+                    <td>
+                        <label> تليفون 2</label>
+                        <input type="text" name="phone2" id="officer-phone2"
+                            value="{{ Numbers::ShowInArabicDigits($officer->phone2) }}" disabled />
+                    </td>
+                    <td>
+                        <label> ملاحظات</label>
+                        <input type="text" name="notes" id="officer-notes" value="{{ $officer->notes }}" disabled />
+                    </td>
+                </tr>
+            </table>
             <form action="{{ url('/export-officer-card') }}" method="POST">
                 @csrf
                 <input type="hidden" name="semi_officer" value="{{ $officer }}">

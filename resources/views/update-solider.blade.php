@@ -43,89 +43,132 @@
         <form action="{{ url('/update-solider-data/' . $officer->id) }}" method="POST">
             @csrf
             <div class="input">
-                <label>الرقم العسكري </label>
-                <input type="text" name="militray_id" id="militray_id" placeholder="أدخل الرقم العسكري"
-                    value="{{ $officer->militray_id }}" />
-                <label> الرتبة </label>
-                <input type="text" name="degree" id="degree" placeholder="أدخل الدرجة"
-                    value="{{ $officer->degree }}" />
-                <label> الأسم </label>
-                <input type="text" name="name" id="officer-name" placeholder=" أسم الجندي"
-                    value="{{ $officer->name }}" />
-
-                <label> الوحدة</label>
-                <select name="kateba_id">
-                    @if ($officer->kateba->katepa_name == 21)
-                        {
-                        <option value="1">قيال 21
-                        </option>
-                        }
-                    @else
-                        <option value="{{ $officer->kateba->id }}">ك {{ $officer->kateba->katepa_name }}</option>
-                    @endif
-                    <option value="1"> قيال 21 </option>
-                    @foreach ($kataebs as $kataeb)
-                        @if ($kataeb->id != 1)
-                            {
-                            <option value="{{ $kataeb->id }}"> ك{{ $kataeb->katepa_name }}</option>
-                            }
-                        @endif
-                    @endforeach
-                </select>
-                <br />
-                <label> تاريخ الأنضمام</label>
-                <input type="date" name="join_at" id="join_at" value="{{ $officer->join_at }}" />
-                <label> تاريخ التسريح</label>
-                <input type="text" name="left_in" id="left_in" value="{{ $officer->left_in }}" />
-                <label> المؤهل</label>
-                <input type="text" name="certification" id="officer-job" value="{{ $officer->certification }}"
-                    placeholder="الوظيفة" />
-                <label> التخصص</label>
-                <input type="text" name="specialist" id="officer-specialist" placeholder="التخصص"
-                    value="{{ $officer->specialist }}" />
-                <br />
-                <label> تاريخ الميلاد </label>
-                <input type="date" name="birthdate" id="officer-birthdate" value="{{ $officer->birthdate }}" />
-                <label>شارع </label>
-                <input type="text" name="street" id="officer-street" placeholder="شارع"
-                    value="{{ $officer->street }}" />
-                <label>قرية </label>
-                <input type="text" name="village" id="officer-village" placeholder="قرية"
-                    value="{{ $officer->village }}" />
-                <label>مدينة </label>
-                <input type="text" name="country" id="officer-country" placeholder="مدينة"
-                    value="{{ $officer->country }}" />
-                <br />
-                <label> محافظة</label>
-                <input type="text" name="goverment" id="officer-goverment" placeholder="محافظة"
-                    value="{{ $officer->goverment }}" />
-                <label> الطول</label>
-                <input type="text" name="hight" id="officer-hight" placeholder="الطول"
-                    value="{{ $officer->hight }}" />
-                <label>الوزن </label>
-                <input type="text" name="weight" id="officer-weight" placeholder="الوزن"
-                    value="{{ $officer->weight }}" />
-
-                <label> السلاح </label>
-                <select name="gun_id" id="gun">
-                    <option value="{{ $officer->gun_id }}" selected> {{ $officer->gun->gun_name }}</option>
-                    @foreach ($guns as $gun)
-                        <option value="{{ $gun->id }}"> {{ $gun->gun_name }}</option>
-                    @endforeach
-                </select>
-                <br />
-
-                <label> تليفون 1</label>
-                <input type="text" name="phone1" id="officer-phone1" placeholder="تليفون 1"
-                    value="{{ $officer->phone1 }}" />
-                <label> تليفون 2</label>
-                <input type="text" name="phone2" id="officer-phone2" placeholder="تليفون 2"
-                    value="{{ $officer->phone2 }}" />
-
-                <label> ملاحظات</label>
-                <input type="text" name="notes" id="officer-notes" placeholder="ملاحظات"
-                    value="{{ $officer->notes }}" />
-                <br />
+                <table>
+                    <tr>
+                        <td>
+                            <label>الرقم العسكري </label>
+                            <input type="text" name="militray_id" id="militray_id" placeholder="أدخل الرقم العسكري"
+                                value="{{ $officer->militray_id }}" />
+                        </td>
+                        <td>
+                            <label> الدرجة </label>
+                            <input type="text" name="degree" id="degree" placeholder="أدخل الدرجة"
+                                value="{{ $officer->degree }}" />
+                        </td>
+                        <td>
+                            <label> الأسم </label>
+                            <input type="text" name="name" id="officer-name" placeholder=" أسم الجندي"
+                                value="{{ $officer->name }}" />
+                        </td>
+                        <td>
+                            <label> الوحدة</label>
+                            <select name="kateba_id">
+                                @if ($officer->kateba->katepa_name == 21)
+                                    {
+                                    <option value="1">قيال 21
+                                    </option>
+                                    }
+                                @else
+                                    <option value="{{ $officer->kateba->id }}">ك {{ $officer->kateba->katepa_name }}
+                                    </option>
+                                @endif
+                                <option value="1"> قيال 21 </option>
+                                @foreach ($kataebs as $kataeb)
+                                    @if ($kataeb->id != 1)
+                                        {
+                                        <option value="{{ $kataeb->id }}"> ك{{ $kataeb->katepa_name }}</option>
+                                        }
+                                    @endif
+                                @endforeach
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label> تاريخ الأنضمام</label>
+                            <input type="date" name="join_at" id="join_at" value="{{ $officer->join_at }}" />
+                        </td>
+                        <td>
+                            <label> تاريخ التسريح</label>
+                            <input type="text" name="left_in" id="left_in" value="{{ $officer->left_in }}" />
+                        </td>
+                        <td>
+                            <label> المؤهل</label>
+                            <input type="text" name="certification" id="officer-job"
+                                value="{{ $officer->certification }}" placeholder="المؤهل" />
+                        </td>
+                        <td>
+                            <label> التخصص</label>
+                            <input type="text" name="specialist" id="officer-specialist" placeholder="التخصص"
+                                value="{{ $officer->specialist }}" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label> تاريخ الميلاد </label>
+                            <input type="date" name="birthdate" id="officer-birthdate"
+                                value="{{ $officer->birthdate }}" />
+                        </td>
+                        <td>
+                            <label>شارع </label>
+                            <input type="text" name="street" id="officer-street" placeholder="شارع"
+                                value="{{ $officer->street }}" />
+                        </td>
+                        <td>
+                            <label>قرية </label>
+                            <input type="text" name="village" id="officer-village" placeholder="قرية"
+                                value="{{ $officer->village }}" />
+                        </td>
+                        <td>
+                            <label>مدينة </label>
+                            <input type="text" name="country" id="officer-country" placeholder="مدينة"
+                                value="{{ $officer->country }}" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label> محافظة</label>
+                            <input type="text" name="goverment" id="officer-goverment" placeholder="محافظة"
+                                value="{{ $officer->goverment }}" />
+                        </td>
+                        <td>
+                            <label> الطول</label>
+                            <input type="text" name="hight" id="officer-hight" placeholder="الطول"
+                                value="{{ $officer->hight }}" />
+                        </td>
+                        <td>
+                            <label>الوزن </label>
+                            <input type="text" name="weight" id="officer-weight" placeholder="الوزن"
+                                value="{{ $officer->weight }}" />
+                        </td>
+                        <td>
+                            <label> السلاح </label>
+                            <select name="gun_id" id="gun">
+                                <option value="{{ $officer->gun_id }}" selected> {{ $officer->gun->gun_name }}</option>
+                                @foreach ($guns as $gun)
+                                    <option value="{{ $gun->id }}"> {{ $gun->gun_name }}</option>
+                                @endforeach
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label> تليفون 1</label>
+                            <input type="text" name="phone1" id="officer-phone1" placeholder="تليفون 1"
+                                value="{{ $officer->phone1 }}" />
+                        </td>
+                        <td>
+                            <label> تليفون 2</label>
+                            <input type="text" name="phone2" id="officer-phone2" placeholder="تليفون 2"
+                                value="{{ $officer->phone2 }}" />
+                        </td>
+                        <td>
+                            <label> ملاحظات</label>
+                            <input type="text" name="notes" id="officer-notes" placeholder="ملاحظات"
+                                value="{{ $officer->notes }}" />
+                        </td>
+                    </tr>
+                </table>
                 <button type="submit" class="btn add-btn"> تعديل</button>
             </div>
         </form>
